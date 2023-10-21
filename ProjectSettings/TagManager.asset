@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Thorn
+  - Ground
+  - Water
   layers:
   - Default
   - TransparentFX

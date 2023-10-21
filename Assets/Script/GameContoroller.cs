@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -24,12 +25,14 @@ public class GameContoroller : MonoBehaviour
     }
     bool _isChangeColor = false;
 
-    [SerializeField]
-    GameObject colorSelectButton;
+    [SerializeField] GameObject colorSelectButton;
+    [SerializeField] TextMeshProUGUI textMeshPro;
 
     public bool _isGameOver = false;
     public bool _isClear = false;
     public bool _isPlay = true;
+
+    PlayerController player = null;
     public bool IsChangeColor
     {
         set
@@ -45,12 +48,16 @@ public class GameContoroller : MonoBehaviour
 
     void Start()
     {
+        player= FindAnyObjectByType<PlayerController>();
         colorSelectButton.SetActive(false);
         _isPlay = true;
+
     }
 
     void Update()
     {
+        textMeshPro.text = $"ëœãvìxÅF{player.Durability}";
+
         if (_isPlay)
         {
             if (IsChangeColor)
