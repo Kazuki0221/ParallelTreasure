@@ -1,38 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
 public class GameContoroller : MonoBehaviour
 {
-    enum StageState
-    {
-        Normal,
-        Red,
-        Blue,
-        Yellow,
-        Green,
-    }
-
-    StageState _state = StageState.Normal;
-
-    StageState State
-    {
-        set { _state = value; }
-        get { return _state; }
-    }
     bool _isChangeColor = false;
 
     [SerializeField] GameObject colorSelectButton;
-    [SerializeField] TextMeshProUGUI textMeshPro;
+    [SerializeField] TextMeshProUGUI durabilityText;
+    [SerializeField] TextMeshProUGUI treasureCountText;
 
     public bool _isGameOver = false;
     public bool _isClear = false;
-    public bool _isPlay = true;
+    public bool _isPlay = false;
 
     PlayerController player = null;
+    List<ColorController> colorController = null;
+    List<ColorController> tempObj = null;
+    List<GroundColorChange> grounds= null;
+
+    List<int> _treasures = new List<int> { };
+    public List<int> Treasures => _treasures;
+    [SerializeField] GameObject _clearAnim = null;
+    [SerializeField] GameObject _result = null;
+
     public bool IsChangeColor
     {
         set
@@ -48,15 +45,25 @@ public class GameContoroller : MonoBehaviour
 
     void Start()
     {
-        player= FindAnyObjectByType<PlayerController>();
+        player= FindObjectOfType<PlayerController>();
+        colorController = FindObjectsOfType<ColorController>().ToList();
+        colorController.ForEach(c => c.gameObject.SetActive(false));
+
+        grounds = FindObjectsOfType<GroundColorChange>().ToList();
+        
         colorSelectButton.SetActive(false);
         _isPlay = true;
+        _clearAnim.SetActive(false);
+        _result.SetActive(false);
 
     }
 
     void Update()
     {
-        textMeshPro.text = $"‘Ï‹v“xF{player.Durability}";
+        durabilityText.text = $"‘Ï‹v“xF{player.Durability}";
+
+        treasureCountText.text = $"~{_treasures.Count}";
+
 
         if (_isPlay)
         {
@@ -73,11 +80,11 @@ public class GameContoroller : MonoBehaviour
         {
             if (_isClear)
             {
-                Debug.Log("Clear");
+                _clearAnim.SetActive(true);
             }
             else if (_isGameOver)
             {
-                Debug.Log("GameOver");
+                _result.SetActive(true);
             }
         }
         
@@ -87,20 +94,87 @@ public class GameContoroller : MonoBehaviour
     {
         switch (colorNum)
         {
-            case 1: State = StageState.Red; 
+            case 1:
+                {
+                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Red && !c.CompareTag("Ground")).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if(tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
                 break;
 
-            case 2: State = StageState.Blue;
+            case 2:
+                {
+                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Blue && !c.CompareTag("Ground")).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
+
                 break;
 
-            case 3: State = StageState.Yellow;
+            case 3:
+                {
+                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Yellow && !c.CompareTag("Ground")).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
                 break;
 
-            case 4: State = StageState.Green;
+            case 4:
+                {
+                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Green && !c.CompareTag("Ground")).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
+                break;
+            case 5:
+                {
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+                }
                 break;
             default: return;
         }
+        grounds.ForEach(g => g.ChangeColor(colorNum));
         IsChangeColor = false;
         colorSelectButton.SetActive(false);
+
+
+    }
+
+    public void AddTreasure(GameObject treasure, GameObject image = null)
+    {
+        if(image != null)
+        {
+            image.SetActive(true);
+        }
+        _treasures.Add(treasure.GetComponent<Treasure>().Price);
+    }
+
+    public void Clear()
+    {
+        _clearAnim.SetActive(false);
+        _result.SetActive(true);
     }
 }

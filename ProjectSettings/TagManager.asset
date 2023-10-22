@@ -7,15 +7,17 @@ TagManager:
   - Thorn
   - Ground
   - Water
+  - Fire
+  - Goal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Camera
+  - Thorns
   - 
   - 
   - 
