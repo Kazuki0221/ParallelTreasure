@@ -9,6 +9,7 @@ TagManager:
   - Water
   - Fire
   - Goal
+  - Ivy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Camera
   - Thorns
-  - 
+  - Ivy
   - 
   - 
   - 

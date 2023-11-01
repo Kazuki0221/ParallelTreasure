@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     enum State
     {
         Normal,
-        Swim
+        Swim,
+        Climb
     }
 
     [SerializeField, Header("HP")] float _durability = 5.0f;
@@ -22,12 +24,21 @@ public class PlayerController : MonoBehaviour
 
     float _lastHorizontal = 0f;
     Rigidbody2D _rb2D= default;
+    Vector2 tempVelocity = Vector2.zero;
+
     Animator _animator => GetComponent<Animator>();
     SpriteRenderer _sr => GetComponent<SpriteRenderer>();
 
     GameContoroller _gameContoroller = null;
-    Vector2 tempVelocity= Vector2.zero;
+
     bool _isJump = true;
+
+    //“o‚è‚Ì•Ï”
+    bool _isClimb = false;
+    public float _distance;
+    public LayerMask _ivyLayer;
+
+
     [SerializeField] State _state = State.Normal;
 
     void Start()
@@ -45,14 +56,6 @@ public class PlayerController : MonoBehaviour
             _gameContoroller._isGameOver = true;
         }
 
-        if(_state == State.Normal)
-        {
-            _rb2D.drag = 0;
-        }
-        else if(_state == State.Swim)
-        {
-            _rb2D.drag = 2;
-        }
         Move();
 
         if (_invincible)
@@ -93,7 +96,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") && _state == State.Normal)
         {
             _isJump = false;
-            //_animator.SetFloat("Speed", 0);
         }
     }
 
@@ -112,8 +114,15 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Water"))
         {
             _state = State.Swim;
+            _rb2D.drag = 2;
             _isJump = true;
+            _animator.SetBool("IsSwim", true);
         }
+
+        //if (collision.gameObject.CompareTag("Ivy"))
+        //{
+        //    _isClimb = true;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -121,8 +130,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Water"))
         {
             _state = State.Normal;
+            _rb2D.drag = 0;
             _isJump = false;
+            _animator.SetBool("IsSwim", false);
         }
+
+        //if (collision.gameObject.CompareTag("Ivy"))
+        //{
+        //    _isClimb = false;
+        //    _state= State.Normal;
+        //}
     }
 
     void Move()
@@ -142,24 +159,51 @@ public class PlayerController : MonoBehaviour
             if (!_gameContoroller.IsChangeColor)
             {
                 var horizontal = Input.GetAxisRaw("Horizontal");
-                var moveDirction = new Vector2(horizontal, 0).normalized * _speed;
                 float verticalVelocity = _rb2D.velocity.y;
+                var moveDirection = new Vector2(horizontal, 0).normalized * _speed;
 
-                if(_lastHorizontal != horizontal)
+                _rb2D.velocity = moveDirection + Vector2.up * verticalVelocity;
+
+
+                RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, 2, _ivyLayer);
+                
+                if(hitInfo.collider != null)
+                {
+                    if(Input.GetAxisRaw("Jump") > 0)
+                    {
+                        _isClimb = true;
+                    }
+                }
+                else
+                {
+                    _isClimb = false;
+                }
+
+
+                if (!_isClimb)
+                {
+
+                    if (Input.GetButtonDown("Jump") && _isJump)
+                    {
+                        _rb2D.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+                    }
+                    _rb2D.gravityScale = 1;
+                }
+                else if(_isClimb)
+                {
+                    var _climb = Input.GetAxisRaw("Jump");
+                    _rb2D.velocity = new Vector2(_rb2D.velocity.x, _climb * _speed);
+                    _rb2D.gravityScale = 0;
+                }
+
+                _animator.SetFloat("Speed", Mathf.Abs(_rb2D.velocity.x));
+
+                if (_lastHorizontal != horizontal)
                 {
                     ChangeDirection(horizontal);
                 }
-
-                _rb2D.velocity = moveDirction + Vector2.up * verticalVelocity;
-                _animator.SetFloat("Speed", Mathf.Abs(_rb2D.velocity.x));
-
-                if (Input.GetButtonDown("Jump") && _isJump)
-                {
-                    _rb2D.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
-                    //_animator.SetFloat("Speed", 0);
-                }
-
                 _lastHorizontal = horizontal;
+
             }
             else
             {
@@ -226,5 +270,11 @@ public class PlayerController : MonoBehaviour
     public void AddSpeed(float speed)
     {
         _speed += speed;
+    }
+
+    public void DelaySpeed(float speed)
+    {
+        var newSpeed = _speed - speed;
+        _speed = newSpeed;
     }
 }
