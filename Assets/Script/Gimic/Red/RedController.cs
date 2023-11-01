@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireArea : ColorController
+public class RedController : ColorController
 {
     float damage = 0.5f;
 
@@ -10,17 +10,13 @@ public class FireArea : ColorController
     {
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public virtual void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerController _playerController = collision.GetComponent<PlayerController>();
-            
-            _playerController.Hit(damage);
-        }
 
-        if(collision.gameObject.name == "Wood"){
-            Destroy(collision.gameObject);
+            _playerController.Hit(damage);
         }
     }
 }

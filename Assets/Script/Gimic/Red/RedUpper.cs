@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedUpper : ColorController
+public class RedUpper : RedController
 {
     [SerializeField, Header("”­ŽË‘¬“x")] float speed = 3.0f;
     [SerializeField, Header("Œø‰Ê”ÍˆÍ")] float range = 5.0f;
@@ -11,8 +11,6 @@ public class RedUpper : ColorController
     float timer = 0f;
     bool isStrech = false;
     bool isStop = true;
-
-    float damage = 0.5f;
 
     public override void Action()
     {
@@ -63,15 +61,4 @@ public class RedUpper : ColorController
             }
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController _playerController = collision.GetComponent<PlayerController>();
-
-            _playerController.Hit(damage);
-        }
-    }
-
 }

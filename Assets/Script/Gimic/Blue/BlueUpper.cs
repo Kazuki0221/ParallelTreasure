@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueUpper : ColorController
+public class BlueUpper : BlueController
 {
     [SerializeField, Header("”­ŽË‘¬“x")] float speed = 3.0f;
     [SerializeField, Header("Œø‰Ê”ÍˆÍ")] float range = 5.0f;
