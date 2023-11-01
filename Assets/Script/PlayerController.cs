@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             _gameContoroller._isGameOver = true;
             _gameContoroller._isPlay = false;
+            _gameContoroller.Judgement();
         }
     }
 
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviour
             _gameContoroller._isClear = true;
             _gameContoroller._isPlay = false;
             gameObject.SetActive(false);
+            _gameContoroller.Judgement();
         }
     }
 
@@ -142,6 +144,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _rb2D.velocity = tempVelocity;
                 }
+                _gameContoroller.ActiveColorChanger();
             }
 
             if (!_gameContoroller.IsChangeColor)
@@ -196,36 +199,33 @@ public class PlayerController : MonoBehaviour
             {
                 _rb2D.velocity = Vector2.zero;
 
-                int colorFlg = 0;
-                ColorState cState = ColorState.Normal;
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    colorFlg = 1;
-                    cState = ColorState.Red;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    colorFlg = 2;
-                    cState = ColorState.Blue;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    colorFlg = 3;
-                    cState = ColorState.Yellow;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha4))
-                {
-                    colorFlg = 4;
-                    cState = ColorState.Green;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha5))
-                {
-                    colorFlg = 5;
-                    cState = ColorState.Normal;
-                }
-                _gameContoroller.ChangeStageColor(colorFlg);
 
-                //_gameContoroller.ChangeStageColor(cState);
+                if (_gameContoroller.ChackKey())
+                {
+                    ColorState cState = ColorState.Normal;
+                    if (Input.GetKey(KeyCode.Alpha1))
+                    {
+                        cState = ColorState.Red;
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha2))
+                    {
+                        cState = ColorState.Blue;
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha3))
+                    {
+                        cState = ColorState.Yellow;
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha4))
+                    {
+                        cState = ColorState.Green;
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha5))
+                    {
+                        cState = ColorState.Normal;
+                    }
+
+                    _gameContoroller.ChangeStageColor(cState);
+                }
             }
         }
     }

@@ -6,19 +6,11 @@ public class GroundColorChange : ColorController
 {
     [SerializeField] Color[] colors= null;
 
-    //public void ChangeColor(ColorState colorState)
-    //{
-    //    CState = colorState;
-    //    gameObject.GetComponent<SpriteRenderer>().color = colors[(int)CState];
-    //}
-
-    public void ChangeColor(int colorState)
+    public void ChangeColor(ColorState colorState)
     {
-        if (colorState == 5) colorState = 0;
-        //CState = ;
-        gameObject.GetComponent<SpriteRenderer>().color = colors[colorState];
+        CState = colorState;
+        gameObject.GetComponent<SpriteRenderer>().color = colors[(int)CState];
     }
-
 
     public override void Action()
     {

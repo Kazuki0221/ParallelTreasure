@@ -1,10 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 
@@ -23,7 +22,7 @@ public class GameContoroller : MonoBehaviour
     PlayerController player = null;
     List<ColorController> colorController = null;
     List<ColorController> tempObj = null;
-    List<GroundColorChange> grounds= null;
+    List<GroundColorChange> grounds = null;
 
     List<int> _treasures = new List<int> { };
     public List<int> Treasures => _treasures;
@@ -41,16 +40,16 @@ public class GameContoroller : MonoBehaviour
             return _isChangeColor;
         }
     }
-   
+
 
     void Start()
     {
-        player= FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<PlayerController>();
         colorController = FindObjectsOfType<ColorController>().ToList();
         colorController.Where(c => !c.CompareTag("Ground")).ToList().ForEach(c => c.gameObject.SetActive(false));
 
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
-        
+
         colorSelectButton.SetActive(false);
         _isPlay = true;
         _clearAnim.SetActive(false);
@@ -64,33 +63,33 @@ public class GameContoroller : MonoBehaviour
 
         treasureCountText.text = $"~{_treasures.Count}";
 
-
-        if (_isPlay)
-        {
-            if (IsChangeColor)
-            {
-                colorSelectButton.SetActive(true);
-            }
-            else if (!IsChangeColor)
-            {
-                colorSelectButton.SetActive(false);
-            }
-        }
-        else
-        {
-            if (_isClear)
-            {
-                _clearAnim.SetActive(true);
-            }
-            else if (_isGameOver)
-            {
-                _result.SetActive(true);
-            }
-        }
-        
     }
 
-    /*
+
+    public void ActiveColorChanger()
+    {
+        if (IsChangeColor)
+        {
+            colorSelectButton.SetActive(true);
+        }
+        else if (!IsChangeColor)
+        {
+            colorSelectButton.SetActive(false);
+        }
+    }
+
+    public void Judgement()
+    {
+        if (_isClear)
+        {
+            _clearAnim.SetActive(true);
+        }
+        else if (_isGameOver)
+        {
+            _result.SetActive(true);
+        }
+    }
+
     public void ChangeStageColor(ColorState colorState)
     {
         switch (colorState)
@@ -157,96 +156,14 @@ public class GameContoroller : MonoBehaviour
                 break;
             default: return;
         }
-        grounds.ForEach(g => g.ChangeColor((int)colorState));
-        IsChangeColor = false;
-        colorSelectButton.SetActive(false);
-    }
-    */
-    public void ChangeStageColor(int colorState)
-    {
-        switch (colorState)
-        {
-            case 1:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Red && !c.CompareTag("Ground")).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-                    grounds.ForEach(g => g.CState = ColorState.Red);
-
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
-
-                    tempObj = list;
-                }
-                break;
-
-            case 2:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Blue && !c.CompareTag("Ground")).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-                    grounds.ForEach(g => g.CState = ColorState.Blue);
-
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
-
-                    tempObj = list;
-                }
-
-                break;
-
-            case 3:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Yellow && !c.CompareTag("Ground")).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-                    grounds.ForEach(g => g.CState = ColorState.Yellow);
-
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
-
-                    tempObj = list;
-                }
-                break;
-
-            case 4:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Green && !c.CompareTag("Ground")).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-                    grounds.ForEach(g => g.CState = ColorState.Green);
-
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
-
-                    tempObj = list;
-                }
-                break;
-            case 5:
-                {
-                    grounds.ForEach(g => g.CState = ColorState.Normal);
-
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
-                }
-                break;
-            default: return;
-        }
         grounds.ForEach(g => g.ChangeColor(colorState));
         IsChangeColor = false;
         colorSelectButton.SetActive(false);
     }
 
-
     public void AddTreasure(GameObject treasure, GameObject image = null)
     {
-        if(image != null)
+        if (image != null)
         {
             image.SetActive(true);
         }
@@ -257,5 +174,27 @@ public class GameContoroller : MonoBehaviour
     {
         _clearAnim.SetActive(false);
         _result.SetActive(true);
+    }
+
+    public bool ChackKey()
+    {
+        if (Input.anyKey)
+        {
+            foreach (KeyCode code in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKey(code))
+                {
+                    if(code != KeyCode.Alpha1 && code != KeyCode.Alpha2 && code != KeyCode.Alpha3 && code != KeyCode.Alpha4 && code != KeyCode.Alpha5)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
