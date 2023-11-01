@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     {
         Normal,
         Swim,
-        Climb
     }
 
     [SerializeField, Header("HP")] float _durability = 5.0f;
@@ -118,11 +117,6 @@ public class PlayerController : MonoBehaviour
             _isJump = true;
             _animator.SetBool("IsSwim", true);
         }
-
-        //if (collision.gameObject.CompareTag("Ivy"))
-        //{
-        //    _isClimb = true;
-        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -134,12 +128,6 @@ public class PlayerController : MonoBehaviour
             _isJump = false;
             _animator.SetBool("IsSwim", false);
         }
-
-        //if (collision.gameObject.CompareTag("Ivy"))
-        //{
-        //    _isClimb = false;
-        //    _state= State.Normal;
-        //}
     }
 
     void Move()
@@ -179,7 +167,6 @@ public class PlayerController : MonoBehaviour
                     _isClimb = false;
                 }
 
-
                 if (!_isClimb)
                 {
 
@@ -210,27 +197,35 @@ public class PlayerController : MonoBehaviour
                 _rb2D.velocity = Vector2.zero;
 
                 int colorFlg = 0;
+                ColorState cState = ColorState.Normal;
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
                     colorFlg = 1;
+                    cState = ColorState.Red;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
                     colorFlg = 2;
+                    cState = ColorState.Blue;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
                     colorFlg = 3;
+                    cState = ColorState.Yellow;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
                     colorFlg = 4;
+                    cState = ColorState.Green;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha5))
                 {
                     colorFlg = 5;
+                    cState = ColorState.Normal;
                 }
                 _gameContoroller.ChangeStageColor(colorFlg);
+
+                //_gameContoroller.ChangeStageColor(cState);
             }
         }
     }

@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ColorState
+{
+    Normal = 0,
+    Red = 1,
+    Blue = 2,
+    Yellow = 3,
+    Green = 4,
+}
+
 public abstract class ColorController : MonoBehaviour
 {
     GameContoroller _gameContoroller = null;
 
-    public enum ColorState
-    {
-        Normal,
-        Red,
-        Blue,
-        Yellow,
-        Green,
-    }
 
     [SerializeField] ColorState _colorState = ColorState.Normal;
     public ColorState CState
     {
-        private set
+        set
         {
             _colorState= value;
         }

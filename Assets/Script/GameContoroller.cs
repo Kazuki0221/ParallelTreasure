@@ -47,7 +47,7 @@ public class GameContoroller : MonoBehaviour
     {
         player= FindObjectOfType<PlayerController>();
         colorController = FindObjectsOfType<ColorController>().ToList();
-        colorController.ForEach(c => c.gameObject.SetActive(false));
+        colorController.Where(c => !c.CompareTag("Ground")).ToList().ForEach(c => c.gameObject.SetActive(false));
 
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
         
@@ -90,15 +90,89 @@ public class GameContoroller : MonoBehaviour
         
     }
 
-    public void ChangeStageColor(int colorNum)
+    /*
+    public void ChangeStageColor(ColorState colorState)
     {
-        switch (colorNum)
+        switch (colorState)
+        {
+            case ColorState.Red:
+                {
+                    var list = colorController.Where(c => c.CState == ColorState.Red).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
+                break;
+
+            case ColorState.Blue:
+                {
+                    var list = colorController.Where(c => c.CState == ColorState.Blue).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
+
+                break;
+
+            case ColorState.Yellow:
+                {
+                    var list = colorController.Where(c => c.CState == ColorState.Yellow).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
+                break;
+
+            case ColorState.Green:
+                {
+                    var list = colorController.Where(c => c.CState == ColorState.Green).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+
+                    tempObj = list;
+                }
+                break;
+            case ColorState.Normal:
+                {
+                    if (tempObj != null)
+                    {
+                        tempObj.ForEach(o => o.gameObject.SetActive(false));
+                    }
+                }
+                break;
+            default: return;
+        }
+        grounds.ForEach(g => g.ChangeColor((int)colorState));
+        IsChangeColor = false;
+        colorSelectButton.SetActive(false);
+    }
+    */
+    public void ChangeStageColor(int colorState)
+    {
+        switch (colorState)
         {
             case 1:
                 {
-                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Red && !c.CompareTag("Ground")).ToList();
+                    var list = colorController.Where(c => c.CState == ColorState.Red && !c.CompareTag("Ground")).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
-                    if(tempObj != null)
+                    grounds.ForEach(g => g.CState = ColorState.Red);
+
+                    if (tempObj != null)
                     {
                         tempObj.ForEach(o => o.gameObject.SetActive(false));
                     }
@@ -109,8 +183,10 @@ public class GameContoroller : MonoBehaviour
 
             case 2:
                 {
-                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Blue && !c.CompareTag("Ground")).ToList();
+                    var list = colorController.Where(c => c.CState == ColorState.Blue && !c.CompareTag("Ground")).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
+                    grounds.ForEach(g => g.CState = ColorState.Blue);
+
                     if (tempObj != null)
                     {
                         tempObj.ForEach(o => o.gameObject.SetActive(false));
@@ -123,8 +199,10 @@ public class GameContoroller : MonoBehaviour
 
             case 3:
                 {
-                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Yellow && !c.CompareTag("Ground")).ToList();
+                    var list = colorController.Where(c => c.CState == ColorState.Yellow && !c.CompareTag("Ground")).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
+                    grounds.ForEach(g => g.CState = ColorState.Yellow);
+
                     if (tempObj != null)
                     {
                         tempObj.ForEach(o => o.gameObject.SetActive(false));
@@ -136,8 +214,10 @@ public class GameContoroller : MonoBehaviour
 
             case 4:
                 {
-                    var list = colorController.Where(c => c.CState == ColorController.ColorState.Green && !c.CompareTag("Ground")).ToList();
+                    var list = colorController.Where(c => c.CState == ColorState.Green && !c.CompareTag("Ground")).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
+                    grounds.ForEach(g => g.CState = ColorState.Green);
+
                     if (tempObj != null)
                     {
                         tempObj.ForEach(o => o.gameObject.SetActive(false));
@@ -148,6 +228,8 @@ public class GameContoroller : MonoBehaviour
                 break;
             case 5:
                 {
+                    grounds.ForEach(g => g.CState = ColorState.Normal);
+
                     if (tempObj != null)
                     {
                         tempObj.ForEach(o => o.gameObject.SetActive(false));
@@ -156,12 +238,11 @@ public class GameContoroller : MonoBehaviour
                 break;
             default: return;
         }
-        grounds.ForEach(g => g.ChangeColor(colorNum));
+        grounds.ForEach(g => g.ChangeColor(colorState));
         IsChangeColor = false;
         colorSelectButton.SetActive(false);
-
-
     }
+
 
     public void AddTreasure(GameObject treasure, GameObject image = null)
     {
