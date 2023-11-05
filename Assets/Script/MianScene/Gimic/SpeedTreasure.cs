@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedTreasure : Treasure
+public class SpeedTreasure : TreasureController
 {
     [SerializeField] float _speed;
     [SerializeField] GameObject _image = null;

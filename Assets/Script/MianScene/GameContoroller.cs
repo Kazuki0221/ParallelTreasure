@@ -167,7 +167,7 @@ public class GameContoroller : MonoBehaviour
         {
             image.SetActive(true);
         }
-        _treasures.Add(treasure.GetComponent<Treasure>().Price);
+        _treasures.Add(treasure.GetComponent<TreasureController>().Price);
     }
 
     public void Clear()
