@@ -10,6 +10,7 @@ TagManager:
   - Fire
   - Goal
   - Ivy
+  - Window
   layers:
   - Default
   - TransparentFX
