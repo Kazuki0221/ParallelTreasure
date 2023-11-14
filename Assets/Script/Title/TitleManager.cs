@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class TitleManager : MonoBehaviour
 {
     GameManager _gameManager => FindObjectOfType<GameManager>();
+    SaveView _saveView;
     [SerializeField] GameObject _createWindow;
 
     [SerializeField] GameObject _dataWindow;
@@ -17,13 +18,14 @@ public class TitleManager : MonoBehaviour
     {
         _createWindow.SetActive(false);
         _dataWindow.SetActive(false);
+        _saveView = _dataWindow.GetComponent<SaveView>();
 
         _gameManager.loadFlg = false;
     }
 
     public void CreateData(TMP_InputField input)
     {
-        _gameManager._saveManager.CreateData(input.text);
+        _gameManager.SaveData = _saveView.CreateData(input.text, _gameManager.SaveData);
         _gameManager.ToNext("StageSelect");
     }
 

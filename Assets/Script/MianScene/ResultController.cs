@@ -7,9 +7,10 @@ using UnityEngine;
 public class ResultController : MonoBehaviour
 {
     GameContoroller _gameContoroller;
+    GameManager _gameManager;
     [SerializeField] GameObject _resultPanel;
     [SerializeField] GameObject _gameOverText;
-    List<int> treasures = new List<int>();
+    List<Treasure> treasures = new List<Treasure>();
     [SerializeField] Transform _imageList;
     [SerializeField] Transform _textList;
     [SerializeField] GameObject _image;
@@ -17,10 +18,13 @@ public class ResultController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI sumText;
     [SerializeField] TextMeshProUGUI runkText;
+
+    SaveManager saveManager;
     int sum = 0;
     void OnEnable()
     {
         _gameContoroller = FindObjectOfType<GameContoroller>();
+        _gameManager = FindObjectOfType<GameManager>();
         if (_gameContoroller._isClear)
         {
             _gameOverText.SetActive(false);
@@ -39,8 +43,14 @@ public class ResultController : MonoBehaviour
 
                     var text = Instantiate(_text);
                     text.transform.parent = _textList.transform;
-                    text.GetComponent<TextMeshProUGUI>().text = $"Åè{t}00000";
-                    sum += t;
+                    text.GetComponent<TextMeshProUGUI>().text = $"Åè{t.price}00000";
+                    sum += t.price;
+
+                    if (!_gameManager.SaveData.treasures.Contains(t))
+                    {
+                        _gameManager.SaveData.treasures.Add(t);
+                    }
+
                 });
             }
 

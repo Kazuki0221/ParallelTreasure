@@ -24,8 +24,8 @@ public class GameContoroller : MonoBehaviour
     List<ColorController> tempObj = null;
     List<GroundColorChange> grounds = null;
 
-    List<int> _treasures = new List<int> { };
-    public List<int> Treasures => _treasures;
+    List<Treasure> _treasures = new List<Treasure> { };
+    public List<Treasure> Treasures => _treasures;
     [SerializeField] GameObject _clearAnim = null;
     [SerializeField] GameObject _result = null;
 
@@ -167,7 +167,7 @@ public class GameContoroller : MonoBehaviour
         {
             image.SetActive(true);
         }
-        _treasures.Add(treasure.GetComponent<TreasureController>().Price);
+        _treasures.Add(treasure.GetComponent<TreasureController>().Treaure);
     }
 
     public void Clear()

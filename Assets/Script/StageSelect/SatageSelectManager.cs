@@ -13,6 +13,7 @@ public class SatageSelectManager : MonoBehaviour
     [SerializeField] Button _optionButton;
     [SerializeField] GameObject _dataWindow;
     [SerializeField] Button[] _buttons = new Button[2];
+    [SerializeField] GameObject treasureList;
 
 
     void Awake()
@@ -27,6 +28,8 @@ public class SatageSelectManager : MonoBehaviour
         _dataWindow = FindObjectOfType<SaveView>().gameObject;
 
         _dataWindow.SetActive(false);
+
+        treasureList.SetActive(false);
 
         _gameManager.saveFlg = false;
         _gameManager.loadFlg = false;
@@ -51,6 +54,11 @@ public class SatageSelectManager : MonoBehaviour
             _gameManager.loadFlg = true;
         }
         _dataWindow.SetActive(true);
+    }
+
+    public void ShowTreasureList()
+    {
+        treasureList.SetActive(true);
     }
 
 

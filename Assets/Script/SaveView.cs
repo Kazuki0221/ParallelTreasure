@@ -63,7 +63,7 @@ public class SaveView : SaveManager
         }
         else if (!File.Exists(filePath))
         {
-            Save(filePath);
+            Save(filePath, _gameManager.SaveData);
             Debug.Log("データをセーブしました。");
             _gameManager.Close();
         }
@@ -71,7 +71,7 @@ public class SaveView : SaveManager
 
     public void UpDateSaveData()
     {
-        Save(filePath);
+        Save(filePath, _gameManager.SaveData);
         Debug.Log("データを上書きしました");
         _gameManager.Close();
     }
@@ -82,7 +82,7 @@ public class SaveView : SaveManager
         if (File.Exists(filePath))
         {
             Debug.Log("ロードしました");
-            Load(filePath);
+            _gameManager.SaveData = Load(filePath, _gameManager.SaveData);
         }
         else if (!File.Exists(filePath))
         {

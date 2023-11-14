@@ -5,10 +5,8 @@ using UnityEngine;
 public class TreasureController : MonoBehaviour
 {
     [SerializeField]Treasure treasure;
+    public Treasure Treaure => treasure; 
 
-    public int Id => treasure.id;
-    public int Price => treasure.price;
-    //public int Type => treasure.type;
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

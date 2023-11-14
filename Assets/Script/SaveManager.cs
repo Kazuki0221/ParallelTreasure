@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    public static SaveData _saveData;
 
-    public void CreateData(string userName)
+    public SaveData CreateData(string userName, SaveData _saveData)
     {
         _saveData = new SaveData(userName);
         Debug.Log($"{_saveData.userName},{_saveData.progress}%,{_saveData.treasures.Count}");
+        return _saveData;
     }
 
-    public void Save(string filePath)
+    public void Save(string filePath, SaveData _saveData)
     {
         try
         {
@@ -57,7 +57,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void Load(string filePath)
+    public SaveData Load(string filePath, SaveData _saveData)
     {
         try
         {
@@ -71,18 +71,12 @@ public class SaveManager : MonoBehaviour
             Debug.Log($"{_saveData.userName},{_saveData.progress}%,{_saveData.treasures.Count}");
 
         }
-        catch (FileNotFoundException)
+        catch (Exception ex)
         {
-            try
-            {
-                //データがないことの表示
-                
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError(ex.Message);
-            }
+            Debug.LogError(ex.Message);
         }
+        return _saveData;
+
     }
 
     public String GetDataPath(int saveDataNum)
