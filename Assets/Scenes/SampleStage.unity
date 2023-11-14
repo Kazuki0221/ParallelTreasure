@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f350ab49a032d84db79e64f015445d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 1
+  treasure: {fileID: 0}
 --- !u!1 &331870861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f350ab49a032d84db79e64f015445d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 100
+  treasure: {fileID: 0}
 --- !u!4 &360093072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2490156238929423915, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
@@ -1967,7 +1967,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08106971, y: 0.42, z: -10}
+  m_LocalPosition: {x: 0.08551991, y: 0.42, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3525,7 +3525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5241ab2a756ce4a8d07621ffac5127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 10
+  treasure: {fileID: 0}
   _speed: 3
   _image: {fileID: 402360058}
 --- !u!1 &1244201856

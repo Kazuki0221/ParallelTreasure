@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveData _saveData;
+
     public void CreateData(string userName)
     {
         _saveData = new SaveData(userName);
