@@ -26,13 +26,14 @@ public class TreasureListView : MonoBehaviour
             {
                 var img = Instantiate(imgPrefs).GetComponent<Image>();
                 img.transform.parent = contents.transform;
+                var slot = img.transform.GetChild(0).GetComponent<Image>();
                 if (haveTreasures.Count > 0 && haveTreasures.Contains(_treasureData.treasures[i]))
                 {
-                    img.sprite = _treasureData.treasures[i].sprite;
+                    slot.sprite = _treasureData.treasures[i].sprite;
                 }
                 else
                 {
-                    img.sprite = notHave;
+                    slot.sprite = notHave;
                 }
             }
         }

@@ -639,11 +639,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5386233011171232697, guid: 31646ddeb5feefe45899350335bfb784, type: 3}
   m_PrefabInstance: {fileID: 248739845}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &248739848 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5992797941641433255, guid: 31646ddeb5feefe45899350335bfb784, type: 3}
-  m_PrefabInstance: {fileID: 248739845}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &249492390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,8 +1512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _treasureData: {fileID: 11400000, guid: 0ecf24df52b0fe54cb6f54c9dd7a93ee, type: 2}
   contents: {fileID: 532879213}
-  imgPrefs: {fileID: 248739848}
-  notHave: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  imgPrefs: {fileID: 117889925806315887, guid: 0b9105493c8744045844b40e216504f3, type: 3}
+  notHave: {fileID: 21300000, guid: d54dd6b13f0266543bdad54ee20b17d0, type: 3}
 --- !u!1 &904451050
 GameObject:
   m_ObjectHideFlags: 0
