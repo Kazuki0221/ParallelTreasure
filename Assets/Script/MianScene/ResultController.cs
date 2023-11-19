@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultController : MonoBehaviour
 {
@@ -89,6 +91,16 @@ public class ResultController : MonoBehaviour
         {
             _resultPanel.SetActive(false);
         }
+    }
+
+    public void ToStageSelect()
+    {
+        _gameManager.ToNext("StageSelect");
+    }
+
+    public void Retry()
+    {
+        _gameManager.ToNext(SceneManager.GetActiveScene().name);
     }
 
 
