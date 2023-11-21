@@ -21,7 +21,6 @@ public class GameContoroller : MonoBehaviour
 
     PlayerController player = null;
     List<ColorController> colorController = null;
-    List<ColorController> tempObj = null;
     List<GroundColorChange> grounds = null;
 
     List<Treasure> _treasures = new List<Treasure> { };
@@ -45,8 +44,8 @@ public class GameContoroller : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        colorController = FindObjectsOfType<ColorController>().ToList();
-        colorController.Where(c => !c.CompareTag("Ground")).ToList().ForEach(c => c.gameObject.SetActive(false));
+        colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground")).ToList();
+        colorController.ForEach(c => c.gameObject.SetActive(false));
 
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
 
@@ -98,12 +97,9 @@ public class GameContoroller : MonoBehaviour
                 {
                     var list = colorController.Where(c => c.CState == ColorState.Red).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
 
-                    tempObj = list;
+                    var list2 = colorController.Where(c => c.CState != ColorState.Red).ToList();
+                    list2.ForEach(l => l.gameObject.SetActive(false));
                 }
                 break;
 
@@ -111,12 +107,9 @@ public class GameContoroller : MonoBehaviour
                 {
                     var list = colorController.Where(c => c.CState == ColorState.Blue).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
 
-                    tempObj = list;
+                    var list2 = colorController.Where(c => c.CState != ColorState.Blue).ToList();
+                    list2.ForEach(l => l.gameObject.SetActive(false));
                 }
 
                 break;
@@ -125,12 +118,9 @@ public class GameContoroller : MonoBehaviour
                 {
                     var list = colorController.Where(c => c.CState == ColorState.Yellow).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
 
-                    tempObj = list;
+                    var list2 = colorController.Where(c => c.CState != ColorState.Yellow).ToList();
+                    list2.ForEach(l => l.gameObject.SetActive(false));
                 }
                 break;
 
@@ -138,20 +128,18 @@ public class GameContoroller : MonoBehaviour
                 {
                     var list = colorController.Where(c => c.CState == ColorState.Green).ToList();
                     list.ForEach(l => l.gameObject.SetActive(true));
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
 
-                    tempObj = list;
+                    var list2 = colorController.Where(c => c.CState != ColorState.Green).ToList();
+                    list2.ForEach(l => l.gameObject.SetActive(false));
                 }
                 break;
             case ColorState.Normal:
                 {
-                    if (tempObj != null)
-                    {
-                        tempObj.ForEach(o => o.gameObject.SetActive(false));
-                    }
+                    var list = colorController.Where(c => c.CState == ColorState.Normal).ToList();
+                    list.ForEach(l => l.gameObject.SetActive(true));
+
+                    var list2 = colorController.Where(c => c.CState != ColorState.Normal).ToList();
+                    list2.ForEach(l => l.gameObject.SetActive(false));
                 }
                 break;
             default: return;

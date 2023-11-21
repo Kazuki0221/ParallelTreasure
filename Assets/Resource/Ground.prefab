@@ -100,12 +100,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorState: 0
+  sprites:
+  - {fileID: 21300000, guid: 2867e8d7cc77c3c4c84de6d955f063ea, type: 3}
+  - {fileID: 36443297, guid: 5a0b3358ded55164aaa5598e4de635ae, type: 3}
+  - {fileID: 1222640928, guid: 3bbd74bda4fcc6c4b95399028ebb7039, type: 3}
+  - {fileID: 1490344956, guid: 1b0b07da929edb14cb34aad1c51015e0, type: 3}
+  - {fileID: 21300000, guid: e521a183ecf03644c98c29c0a4ec57f7, type: 3}
   colors:
-  - {r: 0.49019608, g: 0.28627452, b: 0, a: 1}
-  - {r: 1, g: 0.3339622, b: 0.34022352, a: 1}
-  - {r: 0.50377357, g: 0.54830587, b: 1, a: 1}
-  - {r: 1, g: 0.982456, b: 0.5981132, a: 1}
-  - {r: 0.5886792, g: 1, b: 0.6054386, a: 1}
+  - {r: 0.6603774, g: 0.34184244, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.20047188, b: 1, a: 1}
+  - {r: 1, g: 0.98999345, b: 0.14528298, a: 1}
+  - {r: 0.11868882, g: 1, b: 0, a: 1}
 --- !u!61 &5711025864681018280
 BoxCollider2D:
   m_ObjectHideFlags: 0

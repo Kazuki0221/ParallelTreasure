@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f82061a0d753fb4cba84b44dc6c26cc, type: 3}
   m_Name: Treasure Data Base
   m_EditorClassIdentifier: 
-  treasures: []
+  treasures:
+  - {fileID: 11400000, guid: 877e109ef978a544dbf41f995e221f28, type: 2}
+  - {fileID: 11400000, guid: 9528bc2b19c324846a7c9f514ab22888, type: 2}
+  - {fileID: 11400000, guid: 75808ff7005dbc84d8a639687ff6748a, type: 2}

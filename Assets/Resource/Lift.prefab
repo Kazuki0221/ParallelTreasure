@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.9, y: -2.76, z: -0.047513526}
-  m_LocalScale: {x: 5, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.65882355, g: 0.32941177, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2867e8d7cc77c3c4c84de6d955f063ea, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 2
+  m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -120,14 +120,14 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.4, y: 0.32666668, z: 0.4, w: 0.4}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 4.266667, y: 4.266667}
+    newSize: {x: 5, y: 1.5}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
@@ -144,12 +144,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorState: 0
-  colors:
-  - {r: 0.49019608, g: 0.28627452, b: 0, a: 1}
-  - {r: 1, g: 0.3339622, b: 0.34022352, a: 1}
-  - {r: 0.50377357, g: 0.54830587, b: 1, a: 1}
-  - {r: 1, g: 0.982456, b: 0.5981132, a: 1}
-  - {r: 0.5886792, g: 1, b: 0.6054386, a: 1}
+  sprites:
+  - {fileID: 21300000, guid: 2867e8d7cc77c3c4c84de6d955f063ea, type: 3}
+  - {fileID: 36443297, guid: 5a0b3358ded55164aaa5598e4de635ae, type: 3}
+  - {fileID: 1222640928, guid: 3bbd74bda4fcc6c4b95399028ebb7039, type: 3}
+  - {fileID: 1490344956, guid: 1b0b07da929edb14cb34aad1c51015e0, type: 3}
+  - {fileID: 21300000, guid: e521a183ecf03644c98c29c0a4ec57f7, type: 3}
   _speed: 3
   _startPos: {fileID: 0}
   _endPos: {fileID: 0}

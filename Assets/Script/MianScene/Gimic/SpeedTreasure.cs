@@ -11,14 +11,12 @@ public class SpeedTreasure : TreasureController
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerController _playerController = collision.gameObject.GetComponent<PlayerController>();
+            _playerController.AddSpeed(_speed);
+
             GameContoroller gameContoroller = FindObjectOfType<GameContoroller>();
             gameContoroller.AddTreasure(gameObject, _image);
             gameObject.SetActive(false);
-        }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController _playerController = collision.gameObject.GetComponent<PlayerController>();
-            _playerController.AddSpeed(_speed);
         }
     }
 }
