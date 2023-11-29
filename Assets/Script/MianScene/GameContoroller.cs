@@ -22,6 +22,7 @@ public class GameContoroller : MonoBehaviour
     PlayerController player = null;
     List<ColorController> colorController = null;
     List<GroundColorChange> grounds = null;
+    List<YellowDoor> doors = null;
 
     List<Treasure> _treasures = new List<Treasure> { };
     public List<Treasure> Treasures => _treasures;
@@ -48,6 +49,7 @@ public class GameContoroller : MonoBehaviour
         colorController.ForEach(c => c.gameObject.SetActive(false));
 
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
+        doors = FindObjectsOfType<YellowDoor>().ToList();
 
         colorSelectButton.SetActive(false);
         _isPlay = true;
@@ -145,6 +147,7 @@ public class GameContoroller : MonoBehaviour
             default: return;
         }
         grounds.ForEach(g => g.ChangeColor(colorState));
+        doors.ForEach(l => l.CState = colorState);
         IsChangeColor = false;
         colorSelectButton.SetActive(false);
     }
