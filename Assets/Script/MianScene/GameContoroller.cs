@@ -89,6 +89,8 @@ public class GameContoroller : MonoBehaviour
         {
             _result.SetActive(true);
         }
+
+        _isPlay = false;
     }
 
     public void ChangeStageColor(ColorState colorState)

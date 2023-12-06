@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     Vector2 tempVelocity = Vector2.zero;
 
     Animator _animator => GetComponent<Animator>();
+    AnimationClip _tempAnim  = null;
     SpriteRenderer _sr => GetComponent<SpriteRenderer>();
 
     GameContoroller _gameContoroller = null;
@@ -49,6 +50,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!_gameContoroller._isPlay)
+        {
+            _rb2D.velocity = Vector2.zero;
+            _animator.speed = 0;
+        }
+
+
         if(_durability <= 0)
         {
             _gameContoroller._isPlay = false;
@@ -78,7 +86,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Thorn"))
         {
             _gameContoroller._isGameOver = true;
-            _gameContoroller._isPlay = false;
             _gameContoroller.Judgement();
         }
     }
@@ -104,7 +111,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Goal"))
         {
             _gameContoroller._isClear = true;
-            _gameContoroller._isPlay = false;
             gameObject.SetActive(false);
             _gameContoroller.Judgement();
         }
@@ -149,6 +155,7 @@ public class PlayerController : MonoBehaviour
 
             if (!_gameContoroller.IsChangeColor)
             {
+                _animator.speed = 1;
                 var horizontal = Input.GetAxisRaw("Horizontal");
                 float verticalVelocity = _rb2D.velocity.y;
                 var moveDirection = new Vector2(horizontal, 0).normalized * _speed;
@@ -198,7 +205,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 _rb2D.velocity = Vector2.zero;
-
+                _animator.speed = 0;
 
                 if (_gameContoroller.ChackKey())
                 {
@@ -225,6 +232,8 @@ public class PlayerController : MonoBehaviour
                     }
 
                     _gameContoroller.ChangeStageColor(cState);
+                    //_animator.speed = 1;
+                    //_animator.Play(_tempAnim.name);
                 }
             }
         }

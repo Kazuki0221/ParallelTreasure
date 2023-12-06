@@ -616,7 +616,7 @@ MonoBehaviour:
   _isGameOver: 0
   _isClear: 0
   _isPlay: 0
-  _clearAnim: {fileID: 0}
+  _clearAnim: {fileID: 512576718}
   _result: {fileID: 597109629}
 --- !u!1001 &254581491
 PrefabInstance:
@@ -1059,9 +1059,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 628447104}
     m_Modifications:
+    - target: {fileID: 189259861340315805, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 237087411}
     - target: {fileID: 4742948342657246361, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
       propertyPath: m_Name
       value: GoalAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742948342657246361, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7483719250520232928, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1111,6 +1119,11 @@ PrefabInstance:
 --- !u!4 &512576717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7483719250520232928, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
+  m_PrefabInstance: {fileID: 512576716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &512576718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4742948342657246361, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
   m_PrefabInstance: {fileID: 512576716}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &597109627
@@ -1995,7 +2008,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -0.14173126, y: 46.03459}
+  m_Offset: {x: -0.14173126, y: 55.97485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2006,7 +2019,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 38.393715, y: 100.050446}
+  m_Size: {x: 38.393715, y: 119.93096}
   m_EdgeRadius: 0
 --- !u!66 &786183197
 CompositeCollider2D:
@@ -2048,9 +2061,9 @@ CompositeCollider2D:
   - m_Collider: {fileID: 786183196}
     m_ColliderPaths:
     - - X: 190551264
-        Y: 960598144
+        Y: 1159403264
       - X: -193385888
-        Y: 960598144
+        Y: 1159403264
       - X: -193385888
         Y: -39906312
       - X: 190551264
@@ -2058,8 +2071,8 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths:
     - - {x: 19.055098, y: -3.9906313}
-      - {x: 19.055098, y: 96.059814}
-      - {x: -19.338589, y: 96.059784}
+      - {x: 19.055098, y: 115.94033}
+      - {x: -19.338589, y: 115.9403}
       - {x: -19.33856, y: -3.9906313}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -3829,7 +3842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1610255329
 Transform:
   m_ObjectHideFlags: 0
@@ -4007,7 +4020,7 @@ Transform:
   m_GameObject: {fileID: 1636338412}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.05803, y: 1.22, z: -10}
+  m_LocalPosition: {x: -10.080785, y: 1.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

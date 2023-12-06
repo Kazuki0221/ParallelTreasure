@@ -30,6 +30,10 @@ public class WallContoroller : MonoBehaviour
                 _rb2D.velocity = Vector2.zero;
             }
         }
+        else
+        {
+            _rb2D.velocity = Vector2.zero;
+        }
 
     }
 }

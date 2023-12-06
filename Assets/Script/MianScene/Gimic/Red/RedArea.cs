@@ -8,7 +8,7 @@ public class RedArea : RedController
     {
         base.OnTriggerStay2D(collision);
 
-        if(collision.gameObject.name == "Wood"){
+        if(collision.gameObject.CompareTag("Wood")){
             Destroy(collision.gameObject);
         }
     }
