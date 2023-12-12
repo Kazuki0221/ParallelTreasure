@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 5765951364278067415}
   - component: {fileID: 7202661110000744573}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: TreasureCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: 63007738228068855}
   - component: {fileID: 8350371834043495727}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DurabilityText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2482,7 +2482,7 @@ GameObject:
   - component: {fileID: 2554782717375824370}
   - component: {fileID: 4570034535551333006}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ColorSelectPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

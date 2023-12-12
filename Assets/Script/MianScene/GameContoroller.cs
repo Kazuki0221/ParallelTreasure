@@ -5,19 +5,18 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-
-
 public class GameContoroller : MonoBehaviour
 {
-    bool _isChangeColor = false;
+    bool _isChangeColor = false; //色変更ができるかどうか
+    public bool _isGameOver = false; //ゲームオーバーフラグ
+    public bool _isClear = false; //クリアフラグ
+    public bool _isPlay = false; //プレイ可能か
 
+
+    //UI関連
     [SerializeField] GameObject colorSelectButton;
     [SerializeField] TextMeshProUGUI durabilityText;
     [SerializeField] TextMeshProUGUI treasureCountText;
-
-    public bool _isGameOver = false;
-    public bool _isClear = false;
-    public bool _isPlay = false;
 
     PlayerController player = null;
     List<ColorController> colorController = null;
@@ -41,7 +40,6 @@ public class GameContoroller : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
@@ -52,7 +50,10 @@ public class GameContoroller : MonoBehaviour
         doors = FindObjectsOfType<YellowDoor>().ToList();
 
         colorSelectButton.SetActive(false);
-        _isPlay = true;
+        if(GetComponent<TutorialController>() == null)
+        {
+            _isPlay = true;
+        }
         _clearAnim.SetActive(false);
         _result.SetActive(false);
 

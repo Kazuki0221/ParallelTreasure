@@ -232,8 +232,7 @@ public class PlayerController : MonoBehaviour
                     }
 
                     _gameContoroller.ChangeStageColor(cState);
-                    //_animator.speed = 1;
-                    //_animator.Play(_tempAnim.name);
+                   
                 }
             }
         }
