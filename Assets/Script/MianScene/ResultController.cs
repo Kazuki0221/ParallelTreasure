@@ -95,12 +95,12 @@ public class ResultController : MonoBehaviour
 
     public void ToStageSelect()
     {
-        _gameManager.ToNext("StageSelect");
+       StartCoroutine(_gameManager.ToNext("StageSelect"));
     }
 
     public void Retry()
     {
-        _gameManager.ToNext(SceneManager.GetActiveScene().name);
+        StartCoroutine(_gameManager.ToNext(SceneManager.GetActiveScene().name));
     }
 
 

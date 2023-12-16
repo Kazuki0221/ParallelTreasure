@@ -28,6 +28,8 @@ public class GameContoroller : MonoBehaviour
     [SerializeField] GameObject _clearAnim = null;
     [SerializeField] GameObject _result = null;
 
+    protected FadeController _fadeController = null;
+
     public bool IsChangeColor
     {
         set
@@ -40,8 +42,10 @@ public class GameContoroller : MonoBehaviour
         }
     }
 
-    void Start()
+    public virtual void Start()
     {
+        _fadeController = FindObjectOfType<FadeController>();
+        StartCoroutine(FadeOut());
         player = FindObjectOfType<PlayerController>();
         colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground")).ToList();
         colorController.ForEach(c => c.gameObject.SetActive(false));
@@ -50,10 +54,6 @@ public class GameContoroller : MonoBehaviour
         doors = FindObjectsOfType<YellowDoor>().ToList();
 
         colorSelectButton.SetActive(false);
-        if(GetComponent<TutorialController>() == null)
-        {
-            _isPlay = true;
-        }
         _clearAnim.SetActive(false);
         _result.SetActive(false);
 
@@ -66,7 +66,6 @@ public class GameContoroller : MonoBehaviour
         treasureCountText.text = $"Å~{_treasures.Count}";
 
     }
-
 
     public void ActiveColorChanger()
     {
@@ -190,5 +189,14 @@ public class GameContoroller : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public virtual IEnumerator FadeOut()
+    {
+        var fadeController = FindObjectOfType<FadeController>();
+
+        yield return fadeController.FadeOut(fadeController.FadeSpeed);
+        _isPlay = true;
+        yield return null;
     }
 }

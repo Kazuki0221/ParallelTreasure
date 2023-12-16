@@ -21,12 +21,15 @@ public class TitleManager : MonoBehaviour
         _saveView = _dataWindow.GetComponent<SaveView>();
 
         _gameManager.loadFlg = false;
+
+        var fadeController = FindObjectOfType<FadeController>();
+        StartCoroutine(fadeController.FadeOut(fadeController.FadeSpeed));
     }
 
     public void CreateData(TMP_InputField input)
     {
         _gameManager.SaveData = _saveView.CreateData(input.text, _gameManager.SaveData);
-        _gameManager.ToNext("StageSelect");
+        StartCoroutine(_gameManager.ToNext("StageSelect"));
     }
 
     public void ShowCreateWindow()

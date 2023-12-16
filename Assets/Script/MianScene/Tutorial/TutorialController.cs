@@ -1,27 +1,24 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-public class TutorialController : MonoBehaviour
+public class TutorialController : GameContoroller
 {
-    GameContoroller _gameController;
-
-    [SerializeField] Image fade;
-    [SerializeField] float _fadeSpeed = 3.0f;
+    //GameContoroller _gameController;
 
     [SerializeField] GameObject stageUI;
  
     [SerializeField] CinemachineVirtualCameraBase _camera;
 
-    [SerializeField] PlayableDirector _playableDirector = default;
+    [SerializeField] GameObject _tutorialAnim = default;
     
-    void Start()
+    public override void Start()
     {
-        _gameController = GetComponent<GameContoroller>();
-        _gameController._isPlay = false;
+        base.Start();
         stageUI.SetActive(false);
     }
 
@@ -33,12 +30,16 @@ public class TutorialController : MonoBehaviour
 
     public void StartGame()
     {
-        _gameController._isPlay = true;
+        _isPlay = true;
     }
 
-    public void PlayTimeline()
+    public override IEnumerator FadeOut()
     {
-        _playableDirector.Play();
+        yield return _fadeController.FadeOut(_fadeController.FadeSpeed);
+
+        _tutorialAnim.GetComponent<PlayableDirector>().Play();
+
+        yield return null;
     }
 
     

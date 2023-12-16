@@ -18,7 +18,7 @@ public class SatageSelectManager : MonoBehaviour
 
     void Awake()
     {
-        _stageList.ForEach(btn => btn.onClick.AddListener(() => _gameManager.ToNext(btn.name)));
+        _stageList.ForEach(btn => btn.onClick.AddListener(() => StartCoroutine(_gameManager.ToNext(btn.name))));
 
         _optionWindow.SetActive(false);
         _optionButton.onClick.AddListener(OpenWindow);
@@ -33,8 +33,10 @@ public class SatageSelectManager : MonoBehaviour
 
         _gameManager.saveFlg = false;
         _gameManager.loadFlg = false;
-    }
 
+        var fadeController = FindObjectOfType<FadeController>();
+        StartCoroutine(fadeController.FadeOut(fadeController.FadeSpeed));
+    }
 
     public void OpenWindow()
     {

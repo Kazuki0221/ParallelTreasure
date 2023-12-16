@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,9 +22,10 @@ public class GameManager : MonoBehaviour
     public bool saveFlg = false;
     public bool loadFlg = false;
 
+    FadeController _fade;
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -32,16 +35,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ToNext(string sceneName)
+    public IEnumerator ToNext(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-    }
+        var fadeController = FindObjectOfType<FadeController>();
+        StartCoroutine(fadeController.FadeIn(fadeController.FadeSpeed));
 
+        yield return fadeController.FadeIn(fadeController.FadeSpeed);
+        SceneManager.LoadScene(sceneName);
+        yield return null;
+    }
 
     public void Close()
     {
         GameObject[] window = GameObject.FindGameObjectsWithTag("Window");
-        foreach(var w in window)
+        foreach (var w in window)
         {
             w.SetActive(false);
         }
