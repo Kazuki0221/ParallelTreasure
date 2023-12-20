@@ -12,6 +12,7 @@ TagManager:
   - Ivy
   - Window
   - Wood
+  - Background
   layers:
   - Default
   - TransparentFX

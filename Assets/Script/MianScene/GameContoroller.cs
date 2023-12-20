@@ -20,6 +20,7 @@ public class GameContoroller : MonoBehaviour
 
     PlayerController player = null;
     List<ColorController> colorController = null;
+    BackgroundView background = null;
     List<GroundColorChange> grounds = null;
     List<YellowDoor> doors = null;
 
@@ -47,9 +48,10 @@ public class GameContoroller : MonoBehaviour
         _fadeController = FindObjectOfType<FadeController>();
         StartCoroutine(FadeOut());
         player = FindObjectOfType<PlayerController>();
-        colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground")).ToList();
+        colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground") && !c.CompareTag("Background")).ToList();
         colorController.ForEach(c => c.gameObject.SetActive(false));
 
+        background = FindObjectOfType<BackgroundView>();
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
         doors = FindObjectsOfType<YellowDoor>().ToList();
 
@@ -148,6 +150,7 @@ public class GameContoroller : MonoBehaviour
                 break;
             default: return;
         }
+        background.ChangeColor(colorState);
         grounds.ForEach(g => g.ChangeColor(colorState));
         doors.ForEach(l => l.CState = colorState);
         IsChangeColor = false;
