@@ -12,9 +12,13 @@ public class RedUpper : RedController
     bool isStrech = false;
     bool isStop = true;
 
+    SpriteRenderer _spriteRenderer => GetComponentInChildren<SpriteRenderer>();
+
+
     public override void Action()
     {
-        Transform tempTransform = gameObject.transform;
+        Vector2 tempSize = _spriteRenderer.size;
+
 
         if (isStop)
         {
@@ -33,29 +37,29 @@ public class RedUpper : RedController
         {
             if (isStrech)
             {
-                if (transform.localScale.y < range)
+                if (_spriteRenderer.size.y < range)
                 {
-                    transform.localScale += Vector3.up * speed * Time.deltaTime;
-                    tempTransform.localScale = transform.localScale;
+                    _spriteRenderer.size += Vector2.up * speed * Time.deltaTime;
+                    tempSize = _spriteRenderer.size;
                 }
-                else if (transform.localScale.y >= range)
+                else if (_spriteRenderer.size.y >= range)
                 {
-                    transform.localScale = new Vector3(1, range, 1);
-                    tempTransform.localScale = transform.localScale;
+                    _spriteRenderer.size = new Vector2(3, range);
+                    tempSize = _spriteRenderer.size;
                     isStop = true;
                 }
             }
             else if (!isStrech)
             {
-                if (transform.localScale.y > 0)
+                if (_spriteRenderer.size.y > 2)
                 {
-                    transform.localScale -= Vector3.up * speed * Time.deltaTime;
-                    tempTransform.localScale = transform.localScale;
+                    _spriteRenderer.size -= Vector2.up * speed * Time.deltaTime;
+                    tempSize = _spriteRenderer.size;
                 }
-                else if (transform.localScale.y <= 0)
+                else if (_spriteRenderer.size.y <= 2)
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
-                    tempTransform.localScale = transform.localScale;
+                    _spriteRenderer.size = new Vector2(3, 2);
+                    tempSize = _spriteRenderer.size;
                     isStop = true;
                 }
             }
