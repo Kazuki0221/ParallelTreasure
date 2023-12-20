@@ -12,6 +12,7 @@ public class SaveView : SaveManager
     [SerializeField] Button[] _dataButtons = new Button[3];
     [SerializeField] GameObject _cushionWindow;
     [SerializeField] Button[] _cushionButtons = new Button[2];
+    [SerializeField] Button _closeButton;
 
     string filePath;
 
@@ -30,6 +31,7 @@ public class SaveView : SaveManager
         _cushionWindow.SetActive(false);
         _cushionButtons[0].onClick.AddListener(UpDateSaveData);
         _cushionButtons[1].onClick.AddListener(_gameManager.Close);
+        _closeButton.onClick.AddListener(_gameManager.Close);
     }
 
     public void OnEnable()
@@ -83,6 +85,8 @@ public class SaveView : SaveManager
         {
             Debug.Log("ÉçÅ[ÉhÇµÇ‹ÇµÇΩ");
             _gameManager.SaveData = Load(filePath, _gameManager.SaveData);
+            StartCoroutine(_gameManager.ToNext("StageSelect"));
+
         }
         else if (!File.Exists(filePath))
         {

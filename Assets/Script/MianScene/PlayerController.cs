@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb2D= GetComponent<Rigidbody2D>();
         _gameContoroller = FindObjectOfType<GameContoroller>();
+        Debug.Log(_gameContoroller.gameObject.name);
         _state = State.Normal;
     }
 

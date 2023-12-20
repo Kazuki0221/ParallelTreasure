@@ -1738,7 +1738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resultPanel: {fileID: 5786917273434328616}
-  _gameOverText: {fileID: 3541428719959990628}
+  _gameOverPanel: {fileID: 6109056000831125420}
   _imageList: {fileID: 8717165953208204210}
   _textList: {fileID: 4612709816954433502}
   _image: {fileID: 7847908738908661792, guid: 26ce59b2814c00147bbfe4c811c13917, type: 3}

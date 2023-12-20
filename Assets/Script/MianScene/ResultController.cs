@@ -11,7 +11,7 @@ public class ResultController : MonoBehaviour
     GameContoroller _gameContoroller;
     GameManager _gameManager;
     [SerializeField] GameObject _resultPanel;
-    [SerializeField] GameObject _gameOverText;
+    [SerializeField] GameObject _gameOverPanel;
     List<Treasure> treasures = new List<Treasure>();
     [SerializeField] Transform _imageList;
     [SerializeField] Transform _textList;
@@ -29,7 +29,7 @@ public class ResultController : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager>();
         if (_gameContoroller._isClear)
         {
-            _gameOverText.SetActive(false);
+            _gameOverPanel.SetActive(false);
 
             foreach (var l in _gameContoroller.Treasures)
             {

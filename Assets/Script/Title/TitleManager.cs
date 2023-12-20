@@ -29,7 +29,7 @@ public class TitleManager : MonoBehaviour
     public void CreateData(TMP_InputField input)
     {
         _gameManager.SaveData = _saveView.CreateData(input.text, _gameManager.SaveData);
-        StartCoroutine(_gameManager.ToNext("StageSelect"));
+        StartCoroutine(_gameManager.ToNext("Tutorial"));
     }
 
     public void ShowCreateWindow()
