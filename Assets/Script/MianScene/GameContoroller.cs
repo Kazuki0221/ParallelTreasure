@@ -49,7 +49,7 @@ public class GameContoroller : MonoBehaviour
         StartCoroutine(FadeOut());
         player = FindObjectOfType<PlayerController>();
         colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground") && !c.CompareTag("Background")).ToList();
-        colorController.ForEach(c => c.gameObject.SetActive(false));
+        colorController.Where(c => c.CState != ColorState.Normal).ToList().ForEach(c => c.gameObject.SetActive(false));
 
         background = FindObjectOfType<BackgroundView>();
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
