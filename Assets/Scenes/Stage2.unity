@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 236727308751476870, guid: 52774e8a511576049a8caee6b2120e0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4312
+      value: -4.51
       objectReference: {fileID: 0}
     - target: {fileID: 236727308751476870, guid: 52774e8a511576049a8caee6b2120e0a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1693,7 +1693,7 @@ Transform:
   m_GameObject: {fileID: 560607962}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40362048, y: 0.50999, z: -10}
+  m_LocalPosition: {x: 0.39551258, y: 0.50999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5704,7 +5704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 236727308751476870, guid: 52774e8a511576049a8caee6b2120e0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4312
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 236727308751476870, guid: 52774e8a511576049a8caee6b2120e0a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6064,7 +6064,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 2.0141227}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6075,7 +6075,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 326.3639, y: 24.837523}
+  m_Size: {x: 326.3639, y: 19.027033}
   m_EdgeRadius: 0
 --- !u!66 &2050518643
 CompositeCollider2D:
@@ -6117,19 +6117,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 2050518642}
     m_ColliderPaths:
     - - X: 1631819520
-        Y: 124187616
+        Y: 115276392
       - X: -1631819520
-        Y: 124187616
+        Y: 115276392
       - X: -1631819520
-        Y: -124187616
+        Y: -74993936
       - X: 1631819520
-        Y: -124187616
+        Y: -74993936
   m_CompositePaths:
     m_Paths:
-    - - {x: 163.18193, y: -12.418762}
-      - {x: 163.18193, y: 12.418762}
-      - {x: -163.18196, y: 12.418732}
-      - {x: -163.18193, y: -12.418762}
+    - - {x: 163.18193, y: -7.4993935}
+      - {x: 163.18193, y: 11.527639}
+      - {x: -163.18196, y: 11.52761}
+      - {x: -163.18193, y: -7.4993935}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
