@@ -281,4 +281,9 @@ public class PlayerController : MonoBehaviour
         var newSpeed = _speed - speed;
         _speed = newSpeed;
     }
+
+    public void AddJumpPower(float jumpPower)
+    {
+        _jumpPower += jumpPower;
+    }
 }

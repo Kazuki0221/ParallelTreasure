@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 6.4}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 6.4, y: 6.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -172,3 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treasure: {fileID: 11400000, guid: 877e109ef978a544dbf41f995e221f28, type: 2}
+  treasureType: 0
+  _speedBufImage: {fileID: 0}
+  _speed: 0
+  _jumpBufImage: {fileID: 0}
+  _jumpPower: 0
