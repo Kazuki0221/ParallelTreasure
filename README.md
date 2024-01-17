@@ -9,8 +9,7 @@ Unity　2021.3.23f
 <br>プレイ人数：1人
 
 # 企画書
-　[https://drive.google.com/file/d/1wt01n8MtwlHmn4NNBMYL8oLR3vxMz86L/view?usp=sharing](https://drive.google.com/drive/u/1/folders/1RAWqUnn6ec7MdBd4DHvNujaWvHdQxNwp)
+https://drive.google.com/file/d/1anurQCHznvSfTEmNQ1dX2LUIHVYIEkip/view?usp=sharing
  
 # サンプル動画
-　[https://drive.google.com/file/d/1gCu8JtutoRWoDpxvy3olN3F9jZ8aSwZL/view?usp=sharing
-](https://drive.google.com/file/d/1083_NJ9LwKk_tq7dmFpVIQ60kHlvq1XQ/view?usp=sharing)https://drive.google.com/file/d/1083_NJ9LwKk_tq7dmFpVIQ60kHlvq1XQ/view?usp=sharing
+　https://drive.google.com/file/d/1083_NJ9LwKk_tq7dmFpVIQ60kHlvq1XQ/view?usp=sharing
