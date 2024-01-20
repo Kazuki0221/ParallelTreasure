@@ -72,7 +72,7 @@ public class GameContoroller : MonoBehaviour
 
     void Update()
     {
-        durabilityText.text = $"‘Ï‹v“xF{player.Durability}";
+        durabilityText.text = $"F{player.Durability}";
 
         treasureCountText.text = $"~{_treasures.Count}";
 

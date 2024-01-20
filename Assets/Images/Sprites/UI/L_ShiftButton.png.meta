@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4f56e24c2f0b9204c9d9886d1b283373
+guid: 2f0ed5a97029a4b47b59b86f92234ef3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShiftButton_0
+      name: L_ShiftButton_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 615
-        width: 435
-        height: 240
+        x: 0
+        y: 820
+        width: 640
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35180d668f8ca544f8d9abcee90c4900
-      internalID: 1535311874
+      spriteID: 8c8123da4003b3c4394e4a0540d9441e
+      internalID: -1594378137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShiftButton_1
+      name: L_ShiftButton_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 135
-        width: 435
-        height: 210
+        x: 0
+        y: 180
+        width: 640
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8ec4c0b9610fe04aaeb34e758e7db7f
-      internalID: 1340576433
+      spriteID: c8e4a0ab0fd15df48ac800808269addf
+      internalID: -810322068
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ShiftButton_0: 1535311874
-      ShiftButton_1: 1340576433
+      L_ShiftButton_0: -1594378137
+      L_ShiftButton_1: -810322068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

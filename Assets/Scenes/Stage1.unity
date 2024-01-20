@@ -475,14 +475,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3295447675310869456, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
-      propertyPath: _jumpPower
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7177022716021545382, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8908906674969422329, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1050,7 +1042,7 @@ Transform:
   m_GameObject: {fileID: 196235155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41944957, y: 2.50846, z: -10}
+  m_LocalPosition: {x: 0.37872314, y: 2.50846, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2109,17 +2101,9 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[3].value
       value: 
       objectReference: {fileID: 735233277}
-    - target: {fileID: 4280850011343431686, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4742948342657246361, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
       propertyPath: m_Name
       value: GoalAnim
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742948342657246361, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7483719250520232928, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
       propertyPath: m_LocalPosition.x

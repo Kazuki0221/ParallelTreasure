@@ -1616,17 +1616,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252230709}
     m_Modifications:
-    - target: {fileID: 2476653141562667918, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
-      propertyPath: _fadeSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5251045914772543522, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
       propertyPath: m_Name
       value: FadeCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 5251045914772543522, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7565562602698316815, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
       propertyPath: m_Pivot.x
@@ -1924,8 +1916,8 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 800, y: 450}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
