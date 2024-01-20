@@ -4,8 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// プレイヤーの処理を管理するクラス
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
+
+    /// <summary>
+    /// プレイヤーの状態
+    /// </summary>
     enum State
     {
         Normal,
@@ -45,12 +52,12 @@ public class PlayerController : MonoBehaviour
     {
         _rb2D= GetComponent<Rigidbody2D>();
         _gameContoroller = FindObjectOfType<GameContoroller>();
-        Debug.Log(_gameContoroller.gameObject.name);
         _state = State.Normal;
     }
 
     void Update()
     {
+        //ポーズ時の処理
         if (!_gameContoroller._isPlay)
         {
             _rb2D.velocity = Vector2.zero;
@@ -66,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
+        //ダメージ時の処理
         if (_invincible)
         {
             _animator.SetBool("Invicible", _invincible);
@@ -84,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //壁との接触時の処理
         if (collision.gameObject.CompareTag("Thorn"))
         {
             _gameContoroller._isGameOver = true;
@@ -93,6 +102,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //地面に接触時の処理
         if (collision.gameObject.CompareTag("Ground"))
         {
             _isJump = true;
@@ -101,6 +111,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        //地面を離れた時の処理
         if (collision.gameObject.CompareTag("Ground") && _state == State.Normal)
         {
             _isJump = false;
@@ -109,6 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //ゴール時の処理
         if (collision.gameObject.CompareTag("Goal"))
         {
             _gameContoroller._isClear = true;
@@ -119,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        //水に接触した時の処理
         if (collision.gameObject.CompareTag("Water"))
         {
             _state = State.Swim;
@@ -130,6 +143,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //水から離れた時の処理
         if (collision.gameObject.CompareTag("Water"))
         {
             _state = State.Normal;
@@ -139,10 +153,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// プレイヤーの動きを管理する関数
+    /// </summary>
     void Move()
     {
         if (_gameContoroller._isPlay)
         {
+            //左シフトキーを押すと色の変更をする
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _gameContoroller.IsChangeColor = !_gameContoroller.IsChangeColor;
@@ -154,6 +173,7 @@ public class PlayerController : MonoBehaviour
                 _gameContoroller.ActiveColorChanger();
             }
 
+            //色変えをしていないときのみ移動が可能
             if (!_gameContoroller.IsChangeColor)
             {
                 _animator.speed = 1;
@@ -163,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
                 _rb2D.velocity = moveDirection + Vector2.up * verticalVelocity;
 
-
+                //登れるオブジェクトがあるかの判定
                 RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, 2, _ivyLayer);
                 
                 if(hitInfo.collider != null)
@@ -180,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
                 if (!_isClimb)
                 {
-
+                    //ジャンプ時の処理
                     if (Input.GetButtonDown("Jump") && _isJump)
                     {
                         _rb2D.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
@@ -189,6 +209,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if(_isClimb)
                 {
+                    //登るときの処理
                     var _climb = Input.GetAxisRaw("Jump");
                     _rb2D.velocity = new Vector2(_rb2D.velocity.x, _climb * _speed);
                     _rb2D.gravityScale = 0;
@@ -205,6 +226,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                //色を変更するときの処理
                 _rb2D.velocity = Vector2.zero;
                 _animator.speed = 0;
 
@@ -239,6 +261,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 方向転換処理
+    /// </summary>
+    /// <param name="horizontal"></param>
     void ChangeDirection(float horizontal)
     {
         if(horizontal > 0)
@@ -251,6 +277,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ダメージ時の処理
+    /// </summary>
+    /// <param name="damage"></param>
     public void Hit(float damage)
     {
         if (!_invincible)
@@ -271,17 +301,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 速度上昇処理
+    /// </summary>
+    /// <param name="speed"></param>
     public void AddSpeed(float speed)
     {
         _speed += speed;
     }
 
+    /// <summary>
+    /// 速度減少処理
+    /// </summary>
+    /// <param name="speed"></param>
     public void DelaySpeed(float speed)
     {
         var newSpeed = _speed - speed;
         _speed = newSpeed;
     }
 
+    /// <summary>
+    /// ジャンプ力上昇処理
+    /// </summary>
+    /// <param name="jumpPower"></param>
     public void AddJumpPower(float jumpPower)
     {
         _jumpPower += jumpPower;

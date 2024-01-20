@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ™•Ç‚Ìˆ—‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+/// </summary>
 public class WallContoroller : MonoBehaviour
 {
     [SerializeField, Header("ˆÚ“®‘¬“x")] float _speed = 3.0f;
     Rigidbody2D _rb2D = default;
     GameContoroller _gameContoroller = null;
-
-
 
     void Start()
     {

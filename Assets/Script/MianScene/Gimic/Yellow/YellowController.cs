@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 黄色オブジェクトを管理するクラス
+/// </summary>
 public class YellowController : ColorController
 {
     //[SerializeField] float _delaySpeed = 3.0f;

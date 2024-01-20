@@ -8,10 +8,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// ゲーム全体の管理するクラス
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public static SaveData _saveData;
+    public static GameManager instance;   //シングルトン用変数
+    public static SaveData _saveData;    //セーブデータ用変数
 
     public SaveData SaveData
     {
@@ -22,7 +25,6 @@ public class GameManager : MonoBehaviour
     public bool saveFlg = false;
     public bool loadFlg = false;
 
-    FadeController _fade;
     private void Awake()
     {
         if (instance == null)
@@ -35,6 +37,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// シーンの遷移処理
+    /// </summary>
+    /// <param name="sceneName"></param>
+    /// <returns></returns>
     public IEnumerator ToNext(string sceneName)
     {
         var fadeController = FindObjectOfType<FadeController>();
@@ -45,6 +53,9 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
+    /// <summary>
+    /// ウィンドウを閉じる処理
+    /// </summary>
     public void Close()
     {
         GameObject[] window = GameObject.FindGameObjectsWithTag("Window");
@@ -54,6 +65,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アプリを閉じる処理
+    /// </summary>
     public void EndGame()
     {
 #if UNITY_EDITOR

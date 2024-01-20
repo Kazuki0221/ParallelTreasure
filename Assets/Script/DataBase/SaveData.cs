@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// セーブデータ用クラス
+/// </summary>
 [Serializable]
 public class SaveData
 {

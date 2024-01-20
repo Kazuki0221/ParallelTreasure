@@ -4,14 +4,19 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// セーブデータウィンドウを管理するクラス
+/// </summary>
 public class SaveView : SaveManager
 {
     public static SaveView instance;
 
     GameManager _gameManager;
-    [SerializeField] Button[] _dataButtons = new Button[3];
-    [SerializeField] GameObject _cushionWindow;
-    [SerializeField] Button[] _cushionButtons = new Button[2];
+    [SerializeField] Button[] _dataButtons = new Button[3];  //セーブデータボタンを格納する配列
+
+    //クッションウィンドウ関連
+    [SerializeField] GameObject _cushionWindow;              
+    [SerializeField] Button[] _cushionButtons = new Button[2];　
     [SerializeField] Button _closeButton;
 
     string filePath;
@@ -40,14 +45,14 @@ public class SaveView : SaveManager
         {
             return;
         }
-        else if (_gameManager.saveFlg)
+        else if (_gameManager.saveFlg)　　　//セーブ時の処理
         {
             for (int i = 0; i < _dataButtons.Length; i++)
             {
                 _dataButtons[i].onClick.AddListener(() => Save(i));
             }
         }
-        else if (_gameManager.loadFlg)
+        else if (_gameManager.loadFlg)     //ロード時の処理
         {
             for (int i = 0; i < _dataButtons.Length; i++)
             {
@@ -56,6 +61,10 @@ public class SaveView : SaveManager
         }
     }
 
+    /// <summary>
+    /// セーブボタンを押下したときの処理
+    /// </summary>
+    /// <param name="saveNum"></param>
     public void Save(int saveNum)
     {
         filePath = GetDataPath(saveNum);
@@ -71,6 +80,9 @@ public class SaveView : SaveManager
         }
     }
 
+    /// <summary>
+    /// セーブデータの上書き処理
+    /// </summary>
     public void UpDateSaveData()
     {
         Save(filePath, _gameManager.SaveData);
@@ -78,6 +90,10 @@ public class SaveView : SaveManager
         _gameManager.Close();
     }
 
+    /// <summary>
+    /// ロードボタンを押下したときの処理
+    /// </summary>
+    /// <param name="saveNum"></param>
     public void Load(int saveNum)
     {
         filePath = GetDataPath(saveNum);

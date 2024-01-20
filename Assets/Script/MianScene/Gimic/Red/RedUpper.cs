@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// •¬‰Î‚Ìˆ—‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+/// </summary>
 public class RedUpper : RedController
 {
     [SerializeField, Header("”­Ë‘¬“x")] float speed = 3.0f;

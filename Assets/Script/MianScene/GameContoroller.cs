@@ -5,6 +5,9 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// メインシーンでの処理を管理するクラス
+/// </summary>
 public class GameContoroller : MonoBehaviour
 {
     bool _isChangeColor = false; //色変更ができるかどうか
@@ -17,10 +20,12 @@ public class GameContoroller : MonoBehaviour
     [SerializeField] GameObject colorSelectButton;
     [SerializeField] TextMeshProUGUI durabilityText;
     [SerializeField] TextMeshProUGUI treasureCountText;
+    BackgroundView background = null;
 
+    //オブジェクト関連
     PlayerController player = null;
     List<ColorController> colorController = null;
-    BackgroundView background = null;
+    
     List<GroundColorChange> grounds = null;
     List<YellowDoor> doors = null;
 
@@ -31,6 +36,9 @@ public class GameContoroller : MonoBehaviour
 
     protected FadeController _fadeController = null;
 
+    /// <summary>
+    /// 色の変更の可否を判定する変数
+    /// </summary>
     public bool IsChangeColor
     {
         set
@@ -48,6 +56,7 @@ public class GameContoroller : MonoBehaviour
         _fadeController = FindObjectOfType<FadeController>();
         StartCoroutine(FadeOut());
         player = FindObjectOfType<PlayerController>();
+        //色特有のオブジェクトのみを格納する(床と背景以外を適用)
         colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground") && !c.CompareTag("Background")).ToList();
         colorController.Where(c => c.CState != ColorState.Normal).ToList().ForEach(c => c.gameObject.SetActive(false));
 
@@ -69,6 +78,9 @@ public class GameContoroller : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 色の変更の可否の処理
+    /// </summary>
     public void ActiveColorChanger()
     {
         if (IsChangeColor)
@@ -81,6 +93,9 @@ public class GameContoroller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// クリア・ゲームオーバー判定
+    /// </summary>
     public void Judgement()
     {
         if (_isClear)
@@ -95,6 +110,11 @@ public class GameContoroller : MonoBehaviour
         _isPlay = false;
     }
 
+
+    /// <summary>
+    /// 色の変更処理
+    /// </summary>
+    /// <param name="colorState"></param>
     public void ChangeStageColor(ColorState colorState)
     {
         switch (colorState)
@@ -157,6 +177,11 @@ public class GameContoroller : MonoBehaviour
         colorSelectButton.SetActive(false);
     }
 
+    /// <summary>
+    /// 宝物の入手時の処理
+    /// </summary>
+    /// <param name="treasure"></param>
+    /// <param name="image"></param>
     public void AddTreasure(GameObject treasure, GameObject image = null)
     {
         if (image != null)
@@ -166,12 +191,19 @@ public class GameContoroller : MonoBehaviour
         _treasures.Add(treasure.GetComponent<TreasureController>().Treaure);
     }
 
+    /// <summary>
+    /// クリア時の処理
+    /// </summary>
     public void Clear()
     {
         _clearAnim.SetActive(false);
         _result.SetActive(true);
     }
 
+    /// <summary>
+    /// 押されたキーの判別処理
+    /// </summary>
+    /// <returns></returns>
     public bool ChackKey()
     {
         if (Input.anyKey)
@@ -194,6 +226,10 @@ public class GameContoroller : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// フェード処理
+    /// </summary>
+    /// <returns></returns>
     public virtual IEnumerator FadeOut()
     {
         var fadeController = FindObjectOfType<FadeController>();

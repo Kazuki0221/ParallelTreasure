@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// リフトの処理を管理するクラス
+/// </summary>
 public class LiftController : GroundColorChange
 {
 
-    [SerializeField] float _speed = 3f;
-    [SerializeField] Transform _startPos = null;
-    [SerializeField] Transform _endPos = null;
+    [SerializeField, Header("移動速度")] float _speed = 3f;
+    [SerializeField, Header("始点位置")] Transform _startPos = null;
+    [SerializeField, Header("終点位置")] Transform _endPos = null;
     float _moveTimer = 0f;
     float _stopTimer = 0f;
     [SerializeField] float _delayTime = 3f;
@@ -43,6 +46,9 @@ public class LiftController : GroundColorChange
         collision.transform.SetParent(null);
     }
 
+    /// <summary>
+    /// 目的地に到着したときに一定時間動きを停止する処理
+    /// </summary>
     public void ChangeIsArrival()
     {
         if (_isArrival)
@@ -59,6 +65,10 @@ public class LiftController : GroundColorChange
         }
     }
 
+    /// <summary>
+    /// 移動処理
+    /// </summary>
+    /// <param name="deltaTime"></param>
     public void LiftMove(float deltaTime)
     {
         if (!_isArrival)
@@ -85,6 +95,9 @@ public class LiftController : GroundColorChange
         }
     }
 
+    /// <summary>
+    /// 始点と終点を入れ替える処理
+    /// </summary>
     public void ChangeGoalPosition()
     {
         if (!_reveral)

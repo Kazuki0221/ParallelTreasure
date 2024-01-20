@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+/// <summary>
+/// 色の種類
+/// </summary>
 public enum ColorState
 {
     Normal = 0,
@@ -12,6 +15,10 @@ public enum ColorState
     Green = 4,
 }
 
+
+/// <summary>
+/// 色の処理を管理するクラス
+/// </summary>
 public abstract class ColorController : MonoBehaviour
 {
     GameContoroller _gameContoroller = null;

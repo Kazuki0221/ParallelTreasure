@@ -4,13 +4,16 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 宝物リストの処理を管理するクラス
+/// </summary>
 public class TreasureListView : MonoBehaviour
 {
     GameManager _gameManager;
-    [SerializeField]TreasureDataBase _treasureData;
+    [SerializeField]TreasureDataBase _treasureData;  //宝物のDB
     [SerializeField]GameObject contents = default;
-    [SerializeField]GameObject imgPrefs;
-    [SerializeField] Sprite notHave;
+    [SerializeField]GameObject imgPrefs;　　　　　　//宝物画像
+    [SerializeField] Sprite notHave;                //持っていない宝物を表示する用の画像
 
     private void Awake()
     {
@@ -19,7 +22,7 @@ public class TreasureListView : MonoBehaviour
 
         try
         {
-
+            //宝物DBと手持ちの宝物を比較して、持っている宝物のみをそれぞれの画像で表示する
             var haveTreasures = _gameManager.SaveData.treasures;
 
             for (int i = 0; i < _treasureData.treasures.Count; i++)

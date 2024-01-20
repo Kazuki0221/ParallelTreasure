@@ -5,6 +5,9 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 
+/// <summary>
+/// それぞれの宝物のデータの変更を見やすくするためのクラス
+/// </summary>
 [CustomEditor(typeof(TreasureController))]
 public class TreasureEditor : Editor
 {
@@ -14,6 +17,7 @@ public class TreasureEditor : Editor
 
         TreasureController instance = target as TreasureController;
 
+        //バフがある場合はそれぞれのパラメータを表示する
         switch (instance.TreasureType)
         {
             case TreasureType.Speed:

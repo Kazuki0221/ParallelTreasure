@@ -4,9 +4,18 @@ using System;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// セーブ/ロードの処理を管理するクラス
+/// </summary>
 public class SaveManager : MonoBehaviour
 {
 
+    /// <summary>
+    /// 新規データを作成する処理
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <param name="_saveData"></param>
+    /// <returns></returns>
     public SaveData CreateData(string userName, SaveData _saveData)
     {
         _saveData = new SaveData(userName);
@@ -14,6 +23,11 @@ public class SaveManager : MonoBehaviour
         return _saveData;
     }
 
+    /// <summary>
+    /// セーブ処理
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <param name="_saveData"></param>
     public void Save(string filePath, SaveData _saveData)
     {
         try
@@ -57,6 +71,12 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ロード処理
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <param name="_saveData"></param>
+    /// <returns></returns>
     public SaveData Load(string filePath, SaveData _saveData)
     {
         try
@@ -79,6 +99,11 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// セーブデータのパスを検索する関数
+    /// </summary>
+    /// <param name="saveDataNum"></param>
+    /// <returns></returns>
     public String GetDataPath(int saveDataNum)
     {
         string filePath = Application.persistentDataPath + @"\Savedata" +saveDataNum + ".json";

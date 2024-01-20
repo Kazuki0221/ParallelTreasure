@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 床の色変更を管理するクラス
+/// </summary>
 public class GroundColorChange : ColorController
 {
     [SerializeField] Sprite[] sprites= null;
