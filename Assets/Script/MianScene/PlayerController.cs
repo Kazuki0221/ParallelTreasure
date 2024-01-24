@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 /// <summary>
 /// プレイヤーの処理を管理するクラス
@@ -27,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool Invicible => _invincible;
     [SerializeField,Header("無敵時間")]float _invicibilityDuration = 5f;
     float _invincibilityTimer = 0;
+    [SerializeField, Header("点滅周期")] float _cycle = 1;
 
     float _lastHorizontal = 0f;
     Rigidbody2D _rb2D= default;
@@ -47,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] State _state = State.Normal;
+
+
+    float time;
 
     void Start()
     {
@@ -76,16 +78,21 @@ public class PlayerController : MonoBehaviour
         //ダメージ時の処理
         if (_invincible)
         {
-            _animator.SetBool("Invicible", _invincible);
             if(_invincibilityTimer <= _invicibilityDuration)
             {
                 _invincibilityTimer += Time.deltaTime;
+
+                var repeatValue = Mathf.Repeat(_invincibilityTimer, _cycle);
+                SetAlpha(repeatValue >= _cycle * 0.5f ? 1 : 0);
             }
             else
             {
                 _invincibilityTimer = 0;
                 _invincible = false;
-                _animator.SetBool("Invicible", _invincible);
+                //初期状態に戻す
+                SetAlpha();
+                _sr.enabled = true;
+                
             }
         }
     }
@@ -288,6 +295,7 @@ public class PlayerController : MonoBehaviour
             if (_durability > 0)
             {
                 _durability -= damage;
+                _gameContoroller.OnDamage();
             }
             else
             {
@@ -327,5 +335,16 @@ public class PlayerController : MonoBehaviour
     public void AddJumpPower(float jumpPower)
     {
         _jumpPower += jumpPower;
+    }
+
+    /// <summary>
+    /// 点滅処理
+    /// </summary>
+    /// <param name="alpha"></param>
+    void SetAlpha(float alpha = 1)
+    {
+        var color = _sr.color;
+        color.a = alpha;
+        _sr.color = color;
     }
 }

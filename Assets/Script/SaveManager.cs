@@ -109,4 +109,20 @@ public class SaveManager : MonoBehaviour
         string filePath = Application.persistentDataPath + @"\Savedata" +saveDataNum + ".json";
         return filePath;
     }
+
+    public bool ExistData(int saveDataNum)
+    {
+        string filePath = GetDataPath(saveDataNum);
+
+        if (File.Exists(filePath))
+        {
+            return true;
+        }
+        else if (!File.Exists(filePath))
+        {
+            return false;
+        }
+
+        return false;
+    }
 }

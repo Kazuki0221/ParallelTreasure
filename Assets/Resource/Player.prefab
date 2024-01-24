@@ -129,8 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _durability: 5
   _speed: 5
-  _jumpPower: 15
+  _jumpPower: 8
   _invicibilityDuration: 5
+  _cycle: 0.5
   _distance: 0
   _ivyLayer:
     serializedVersion: 2

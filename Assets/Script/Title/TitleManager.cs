@@ -11,6 +11,7 @@ public class TitleManager : MonoBehaviour
 {
     GameManager _gameManager => FindObjectOfType<GameManager>();
     SaveView _saveView;
+    [SerializeField] Button continueButton = null;
     [SerializeField] GameObject _createWindow;
 
     [SerializeField] GameObject _dataWindow;
@@ -21,6 +22,16 @@ public class TitleManager : MonoBehaviour
         _createWindow.SetActive(false);
         _dataWindow.SetActive(false);
         _saveView = _dataWindow.GetComponent<SaveView>();
+
+        //セーブデータが存在しなければコンテニューボタンの判定をなくす
+        if(_saveView.ExistData(1) && _saveView.ExistData(2) && _saveView.ExistData(3))
+        {
+            continueButton.interactable = false;
+        }
+        else
+        {
+            continueButton.interactable = true;
+        }
 
         _gameManager.loadFlg = false;
 

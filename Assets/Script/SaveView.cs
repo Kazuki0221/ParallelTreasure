@@ -49,6 +49,11 @@ public class SaveView : SaveManager
         {
             for (int i = 0; i < _dataButtons.Length; i++)
             {
+                if (_dataButtons[i].interactable == false)
+                {
+                    _dataButtons[i].interactable = true;
+
+                }
                 _dataButtons[i].onClick.AddListener(() => Save(i));
             }
         }
@@ -56,7 +61,16 @@ public class SaveView : SaveManager
         {
             for (int i = 0; i < _dataButtons.Length; i++)
             {
-                _dataButtons[i].onClick.AddListener(() => Load(i));
+                if(ExistData(i))
+                {
+                    _dataButtons[i].interactable = true;
+                    _dataButtons[i].onClick.AddListener(() => Load(i));
+
+                }
+                else if(!ExistData(i))
+                {
+                    _dataButtons[i].interactable = false;
+                }
             }
         }
     }

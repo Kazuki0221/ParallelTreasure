@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// メインシーンでの処理を管理するクラス
@@ -18,7 +19,9 @@ public class GameContoroller : MonoBehaviour
 
     //UI関連
     [SerializeField] GameObject colorSelectButton;
-    [SerializeField] TextMeshProUGUI durabilityText;
+    [SerializeField] Image[] durabilities = new Image[5];
+    int durabilitiesIndex;
+    [SerializeField, Header("耐久度の状態")] Sprite[] durabilitiesStates = new Sprite[3]; // 0: Full, 1:Half, 2:empty
     [SerializeField] TextMeshProUGUI treasureCountText;
     BackgroundView background = null;
 
@@ -64,17 +67,10 @@ public class GameContoroller : MonoBehaviour
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
         doors = FindObjectsOfType<YellowDoor>().ToList();
 
+        durabilitiesIndex = durabilities.Length - 1;
         colorSelectButton.SetActive(false);
         _clearAnim.SetActive(false);
         _result.SetActive(false);
-
-    }
-
-    void Update()
-    {
-        durabilityText.text = $"：{player.Durability}";
-
-        treasureCountText.text = $"×{_treasures.Count}";
 
     }
 
@@ -178,6 +174,25 @@ public class GameContoroller : MonoBehaviour
     }
 
     /// <summary>
+    /// ダメージ時の耐久度のUI処理
+    /// </summary>
+    public void OnDamage()
+    {
+        if (durabilitiesIndex <= 0) return;
+        //Debug.Log((float)durabilitiesIndex);
+        //減少量の状態によって、対応する画像に変更する。
+        if ((float)durabilitiesIndex == player.Durability)
+        {
+            durabilities[durabilitiesIndex].sprite = durabilitiesStates[2];
+            durabilitiesIndex--;
+        }
+        else if ((float)durabilitiesIndex < player.Durability)
+        {
+            durabilities[durabilitiesIndex].sprite = durabilitiesStates[1];
+        }
+    }
+
+    /// <summary>
     /// 宝物の入手時の処理
     /// </summary>
     /// <param name="treasure"></param>
@@ -189,6 +204,7 @@ public class GameContoroller : MonoBehaviour
             image.SetActive(true);
         }
         _treasures.Add(treasure.GetComponent<TreasureController>().Treaure);
+        treasureCountText.text = $"×{_treasures.Count}";
     }
 
     /// <summary>
