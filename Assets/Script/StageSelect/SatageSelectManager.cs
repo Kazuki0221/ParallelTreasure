@@ -10,7 +10,6 @@ using UnityEngine.UI;
 /// </summary>
 public class SatageSelectManager : MonoBehaviour
 {
-    GameManager _gameManager => FindObjectOfType<GameManager>();
     [SerializeField] List<Button> _stageList = new List<Button>();  //ステージ遷移ボタンのリスト
 
     //オプション関連
@@ -25,30 +24,37 @@ public class SatageSelectManager : MonoBehaviour
     [SerializeField] GameObject treasureList;
 
     //ウィンドウを閉じるボタン格納用リスト
-    [SerializeField] List<Button> _closeButtons= new List<Button>();
+    [SerializeField, Header("データウィンドウを閉じるボタン")] Button _closeDataWindowButton;
+
+    //TreasreListを閉じるボタン格納用リスト
+    [SerializeField, Header("TreasreListを閉じるボタン")] Button _closeTreasreListButton;
+
+    [SerializeField] Button _backButton;
 
 
-    void Awake()
+
+    void Start()
     {
-        _stageList.ForEach(btn => btn.onClick.AddListener(() => StartCoroutine(_gameManager.ToNext(btn.name))));
-        _closeButtons.ForEach(btn => btn.onClick.AddListener(() => _gameManager.Close()));
+        _stageList.ForEach(btn => btn.onClick.AddListener(() => StartCoroutine(GameManager.instance.ToNext(btn.name))));
+        _closeDataWindowButton.onClick.AddListener(CloseOptionWindow);
+        _closeTreasreListButton.onClick.AddListener(CloseTeasureList);
 
         _optionWindow.SetActive(false);
         _optionButton.onClick.AddListener(OpenOptionWindow);
         _buttons[0].onClick.AddListener(() => OpenDataWindow("Save"));
         _buttons[1].onClick.AddListener(() => OpenDataWindow("Load"));
-
-        _dataWindow = FindObjectOfType<SaveView>().gameObject;
+        _backButton.onClick.AddListener(() => StartCoroutine(GameManager.instance.ToNext("Title")));
 
         _dataWindow.SetActive(false);
 
         treasureList.SetActive(false);
 
-        _gameManager.saveFlg = false;
-        _gameManager.loadFlg = false;
+        GameManager.instance.saveFlg = false;
+        GameManager.instance.loadFlg = false;
 
         var fadeController = FindObjectOfType<FadeController>();
         StartCoroutine(fadeController.FadeOut(fadeController.FadeSpeed));
+        AudioManager.instance.PlayBGM("Main");
     }
 
     /// <summary>
@@ -60,6 +66,14 @@ public class SatageSelectManager : MonoBehaviour
     }
 
     /// <summary>
+    /// オプションウィンドウを閉じる処理
+    /// </summary>
+    public void CloseOptionWindow()
+    {
+        _optionWindow.SetActive(false);
+    }
+
+    /// <summary>
     /// セーブデータ用ウィンドウを開く処理
     /// </summary>
     /// <param name="flg"></param>
@@ -67,13 +81,13 @@ public class SatageSelectManager : MonoBehaviour
     {
         if (flg == "Save")
         {
-            _gameManager.saveFlg = true;
-            _gameManager.loadFlg = false;
+            GameManager.instance.saveFlg = true;
+            GameManager.instance.loadFlg = false;
         }
         else if (flg == "Load")
         {
-            _gameManager.saveFlg = false;
-            _gameManager.loadFlg = true;
+            GameManager.instance.saveFlg = false;
+            GameManager.instance.loadFlg = true;
         }
         _dataWindow.SetActive(true);
     }
@@ -81,9 +95,14 @@ public class SatageSelectManager : MonoBehaviour
     /// <summary>
     /// 宝物リストを開く処理
     /// </summary>
-    public void ShowTreasureList()
+    public void OpenTreasureList()
     {
         treasureList.SetActive(true);
+    }
+    
+    public void CloseTeasureList()
+    {
+        treasureList.SetActive(false);
     }
 
 

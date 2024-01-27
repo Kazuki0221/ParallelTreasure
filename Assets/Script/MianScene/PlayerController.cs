@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float Durability => _durability;
     [SerializeField,Header("ˆÚ“®‘¬“x")] float _speed = 3.0f;
     [SerializeField, Header("ƒWƒƒƒ“ƒv—Í")] float _jumpPower = 3.0f;
+
     bool _invincible = false;
     public bool Invicible => _invincible;
     [SerializeField,Header("–³“GŽžŠÔ")]float _invicibilityDuration = 5f;
@@ -46,9 +47,6 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] State _state = State.Normal;
-
-
-    float time;
 
     void Start()
     {
@@ -122,6 +120,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") && _state == State.Normal)
         {
             _isJump = false;
+            AudioManager.instance.PlaySE("Jump");
         }
     }
 

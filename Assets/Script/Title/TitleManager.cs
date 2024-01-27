@@ -9,7 +9,6 @@ using UnityEngine.UI;
 /// </summary>
 public class TitleManager : MonoBehaviour
 {
-    GameManager _gameManager => FindObjectOfType<GameManager>();
     SaveView _saveView;
     [SerializeField] Button continueButton = null;
     [SerializeField] GameObject _createWindow;
@@ -24,7 +23,7 @@ public class TitleManager : MonoBehaviour
         _saveView = _dataWindow.GetComponent<SaveView>();
 
         //セーブデータが存在しなければコンテニューボタンの判定をなくす
-        if(_saveView.ExistData(1) && _saveView.ExistData(2) && _saveView.ExistData(3))
+        if(!_saveView.ExistData(1) && !_saveView.ExistData(2) && !_saveView.ExistData(3))
         {
             continueButton.interactable = false;
         }
@@ -33,10 +32,11 @@ public class TitleManager : MonoBehaviour
             continueButton.interactable = true;
         }
 
-        _gameManager.loadFlg = false;
+        GameManager.instance.loadFlg = false;
 
         var fadeController = FindObjectOfType<FadeController>();
         StartCoroutine(fadeController.FadeOut(fadeController.FadeSpeed));
+        AudioManager.instance.PlayBGM("Main");
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public class TitleManager : MonoBehaviour
     /// <param name="input"></param>
     public void CreateData(TMP_InputField input)
     {
-        _gameManager.SaveData = _saveView.CreateData(input.text, _gameManager.SaveData);
-        StartCoroutine(_gameManager.ToNext("Tutorial"));
+        GameManager.instance.SaveData = _saveView.CreateData(input.text, GameManager.instance.SaveData);
+        StartCoroutine(GameManager.instance.ToNext("Tutorial"));
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     public void OpenDataWindow()
     {
-        _gameManager.loadFlg = true;
+        GameManager.instance.loadFlg = true;
         _dataWindow.SetActive(true);
     }
 

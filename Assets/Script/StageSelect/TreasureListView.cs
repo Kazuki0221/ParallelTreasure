@@ -9,7 +9,6 @@ using UnityEngine.UI;
 /// </summary>
 public class TreasureListView : MonoBehaviour
 {
-    GameManager _gameManager;
     [SerializeField]TreasureDataBase _treasureData;  //宝物のDB
     [SerializeField]GameObject contents = default;
     [SerializeField]GameObject imgPrefs;　　　　　　//宝物画像
@@ -17,13 +16,10 @@ public class TreasureListView : MonoBehaviour
 
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
-
-
         try
         {
             //宝物DBと手持ちの宝物を比較して、持っている宝物のみをそれぞれの画像で表示する
-            var haveTreasures = _gameManager.SaveData.treasures;
+            var haveTreasures = GameManager.instance.SaveData.treasures;
 
             for (int i = 0; i < _treasureData.treasures.Count; i++)
             {

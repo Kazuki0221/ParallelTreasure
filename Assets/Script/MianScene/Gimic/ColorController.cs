@@ -21,8 +21,6 @@ public enum ColorState
 /// </summary>
 public abstract class ColorController : MonoBehaviour
 {
-    protected GameContoroller _gameContoroller = null;
-
 
     [SerializeField] ColorState _colorState = ColorState.Normal;
     public ColorState CState
@@ -32,11 +30,6 @@ public abstract class ColorController : MonoBehaviour
             _colorState= value;
         }
         get { return _colorState; }
-        
-    }
-    void Start()
-    {
-        _gameContoroller = FindObjectOfType<GameContoroller>();
         
     }
 

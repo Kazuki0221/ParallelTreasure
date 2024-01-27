@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class LiftController : GroundColorChange
 {
-
+    [SerializeField] GameContoroller _gameContoroller;
     [SerializeField, Header("移動速度")] float _speed = 3f;
     [SerializeField, Header("始点位置")] Transform _startPos = null;
     [SerializeField, Header("終点位置")] Transform _endPos = null;
@@ -22,6 +22,7 @@ public class LiftController : GroundColorChange
 
     float _distance => Vector2.Distance(_startPos.position, _endPos.position);
 
+
     void Start()
     {
         _goalPosition = _endPos.position;
@@ -29,7 +30,7 @@ public class LiftController : GroundColorChange
 
     public override void Action()
     {
-        if (CState == ColorState.Yellow)
+        if (CState == ColorState.Yellow && !_gameContoroller.IsChangeColor)
         {
             ChangeIsArrival();
             LiftMove(Time.deltaTime);

@@ -9,19 +9,12 @@ using UnityEngine.UI;
 /// </summary>
 public class FadeController : MonoBehaviour
 {
-
-    Image fade => GetComponent<Image>(); //フェードする画像
-    AudioSource audioSource;            //BGM
+    Image fade => GetComponentInChildren<Image>(); //フェードする画像
 
     [SerializeField]
      float _fadeSpeed;                 //フェードする速度
 
     public float FadeSpeed => _fadeSpeed;
-
-    private void Awake()
-    {
-        audioSource = FindObjectOfType<AudioSource>();
-    }
 
     /// <summary>
     /// フェードイン処理
@@ -38,12 +31,10 @@ public class FadeController : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             color.a = elapsed / time;
-            audioSource.volume = (float)(elapsed / time);
             fade.color = color;
             yield return null;
         }
         color.a = 1;
-        audioSource.volume = 0;
         fade.color = color;
         yield return null;
     }
@@ -68,13 +59,11 @@ public class FadeController : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             color.a = 1 - elapsed / time;
-            audioSource.volume = (float)(1 - elapsed / time);
             fade.color = color;
             yield return null;
         }
 
         color.a = 0;
-        audioSource.volume = 1;
         fade.color = color;
         yield return null;
     }

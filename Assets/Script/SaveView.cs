@@ -9,9 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class SaveView : SaveManager
 {
-    public static SaveView instance;
 
-    GameManager _gameManager;
     [SerializeField] Button[] _dataButtons = new Button[3];  //セーブデータボタンを格納する配列
 
     //クッションウィンドウ関連
@@ -21,53 +19,51 @@ public class SaveView : SaveManager
 
     string filePath;
 
-    private void Awake()
+    private void Start()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        _gameManager = FindObjectOfType<GameManager>();
         _cushionWindow.SetActive(false);
         _cushionButtons[0].onClick.AddListener(UpDateSaveData);
-        _cushionButtons[1].onClick.AddListener(_gameManager.Close);
-        _closeButton.onClick.AddListener(_gameManager.Close);
+        _cushionButtons[1].onClick.AddListener(() => _cushionWindow.SetActive(false));
+        _closeButton.onClick.AddListener(CloseWindow);
     }
 
     public void OnEnable()
     {
-        if (!_gameManager.saveFlg && !_gameManager.loadFlg)
+        if(GameManager.instance == null)
         {
             return;
         }
-        else if (_gameManager.saveFlg)　　　//セーブ時の処理
+
+        if (!GameManager.instance.saveFlg && !GameManager.instance.loadFlg)
+        {
+            return;
+        }
+        else if (GameManager.instance.saveFlg)　　　//セーブ時の処理
         {
             for (int i = 0; i < _dataButtons.Length; i++)
             {
+                var index = i + 1;
+
                 if (_dataButtons[i].interactable == false)
                 {
                     _dataButtons[i].interactable = true;
 
                 }
-                _dataButtons[i].onClick.AddListener(() => Save(i));
+                _dataButtons[i].onClick.AddListener(() => Save(index));
             }
         }
-        else if (_gameManager.loadFlg)     //ロード時の処理
+        else if (GameManager.instance.loadFlg)     //ロード時の処理
         {
             for (int i = 0; i < _dataButtons.Length; i++)
             {
-                if(ExistData(i))
+                var index = i + 1;
+                if(ExistData(index))
                 {
                     _dataButtons[i].interactable = true;
-                    _dataButtons[i].onClick.AddListener(() => Load(i));
+                    _dataButtons[i].onClick.AddListener(() => Load(index));
 
                 }
-                else if(!ExistData(i))
+                else if(!ExistData(index))
                 {
                     _dataButtons[i].interactable = false;
                 }
@@ -88,9 +84,10 @@ public class SaveView : SaveManager
         }
         else if (!File.Exists(filePath))
         {
-            Save(filePath, _gameManager.SaveData);
+            Save(filePath, GameManager.instance.SaveData);
+            Debug.Log(filePath);
             Debug.Log("データをセーブしました。");
-            _gameManager.Close();
+            CloseWindow();
         }
     }
 
@@ -99,9 +96,10 @@ public class SaveView : SaveManager
     /// </summary>
     public void UpDateSaveData()
     {
-        Save(filePath, _gameManager.SaveData);
+        Save(filePath, GameManager.instance.SaveData);
         Debug.Log("データを上書きしました");
-        _gameManager.Close();
+        _cushionWindow.SetActive(false);
+        CloseWindow();
     }
 
     /// <summary>
@@ -111,11 +109,12 @@ public class SaveView : SaveManager
     public void Load(int saveNum)
     {
         filePath = GetDataPath(saveNum);
+        Debug.Log(saveNum);
         if (File.Exists(filePath))
         {
             Debug.Log("ロードしました");
-            _gameManager.SaveData = Load(filePath, _gameManager.SaveData);
-            StartCoroutine(_gameManager.ToNext("StageSelect"));
+            GameManager.instance.SaveData = Load(filePath, GameManager.instance.SaveData);
+            StartCoroutine(GameManager.instance.ToNext("StageSelect"));
 
         }
         else if (!File.Exists(filePath))
@@ -123,6 +122,11 @@ public class SaveView : SaveManager
             Debug.Log("データが存在しません");
 
         }
+    }
+
+    public void CloseWindow()
+    {
+        gameObject.SetActive(false);
     }
 
 }

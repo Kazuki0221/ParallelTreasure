@@ -11,8 +11,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class ResultController : MonoBehaviour
 {
+    [SerializeField]
     GameContoroller _gameContoroller;
-    GameManager _gameManager;
 
     //UIä÷òA
     [SerializeField] GameObject _resultPanel;
@@ -26,12 +26,9 @@ public class ResultController : MonoBehaviour
     [SerializeField] TextMeshProUGUI sumText;
     [SerializeField] TextMeshProUGUI runkText;
 
-    SaveManager saveManager;
     int sum = 0;
     void OnEnable()
     {
-        _gameContoroller = FindObjectOfType<GameContoroller>();
-        _gameManager = FindObjectOfType<GameManager>();
 
         //ÉNÉäÉAéûÇÃèàóù
         if (_gameContoroller._isClear)
@@ -56,9 +53,9 @@ public class ResultController : MonoBehaviour
                     text.GetComponent<TextMeshProUGUI>().text = $"Åè{t.price}00000";
                     sum += t.price;
 
-                    if (!_gameManager.SaveData.treasures.Contains(t))
+                    if (!GameManager.instance.SaveData.treasures.Contains(t))
                     {
-                        _gameManager.SaveData.treasures.Add(t);
+                        GameManager.instance.SaveData.treasures.Add(t);
                     }
 
                 });
@@ -107,7 +104,7 @@ public class ResultController : MonoBehaviour
     /// </summary>
     public void ToStageSelect()
     {
-       StartCoroutine(_gameManager.ToNext("StageSelect"));
+       StartCoroutine(GameManager.instance.ToNext("StageSelect"));
     }
 
 
@@ -116,7 +113,7 @@ public class ResultController : MonoBehaviour
     /// </summary>
     public void Retry()
     {
-        StartCoroutine(_gameManager.ToNext(SceneManager.GetActiveScene().name));
+        StartCoroutine(GameManager.instance.ToNext(SceneManager.GetActiveScene().name));
     }
 
 

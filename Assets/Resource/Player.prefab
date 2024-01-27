@@ -130,6 +130,8 @@ MonoBehaviour:
   _durability: 5
   _speed: 5
   _jumpPower: 15
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 91b4a1d2e92b6ae439125e85aeed3525, type: 3}
   _invicibilityDuration: 5
   _cycle: 0.5
   _distance: 0

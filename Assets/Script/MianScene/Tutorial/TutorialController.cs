@@ -11,8 +11,6 @@ using UnityEngine.UI;
 /// </summary>
 public class TutorialController : GameContoroller
 {
-    //GameContoroller _gameController;
-
     [SerializeField] GameObject stageUI;
  
     [SerializeField] CinemachineVirtualCameraBase _camera;  //ïœçXå„ÇÃÉJÉÅÉâ
@@ -55,5 +53,19 @@ public class TutorialController : GameContoroller
         yield return null;
     }
 
+    public void PlayAttentionSE()
+    {
+        AudioManager.instance.PlaySE("Attention");
+    }
+
+    public void PlayMoveWallSE()
+    {
+        AudioManager.instance.PlaySE("MoveWall");
+    }
+
+    public void PlayPushSwitchSE()
+    {
+        AudioManager.instance.PlaySE("PushSwitch");
+    }
     
 }

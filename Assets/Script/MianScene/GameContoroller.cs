@@ -57,11 +57,12 @@ public class GameContoroller : MonoBehaviour
     public virtual void Start()
     {
         _fadeController = FindObjectOfType<FadeController>();
-        //StartCoroutine(FadeOut());
-        _isPlay = true;
+        StartCoroutine(FadeOut());
+        AudioManager.instance.PlayBGM("Main");
+
         player = FindObjectOfType<PlayerController>();
         //色特有のオブジェクトのみを格納する(床と背景以外を適用)
-        colorController = FindObjectsOfType<ColorController>().Where(c => !c.CompareTag("Ground") && !c.CompareTag("Background")).ToList();
+        colorController = FindObjectsOfType<ColorController>().Where(c => !c.GetComponent<GroundColorChange>() && !c.CompareTag("Background") && !c.GetComponent<YellowDoor>()).ToList();
         colorController.Where(c => c.CState != ColorState.Normal).ToList().ForEach(c => c.gameObject.SetActive(false));
 
         background = FindObjectOfType<BackgroundView>();

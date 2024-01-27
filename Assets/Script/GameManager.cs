@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 
@@ -56,14 +56,6 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// ウィンドウを閉じる処理
     /// </summary>
-    public void Close()
-    {
-        GameObject[] window = GameObject.FindGameObjectsWithTag("Window");
-        foreach (var w in window)
-        {
-            w.SetActive(false);
-        }
-    }
 
     /// <summary>
     /// アプリを閉じる処理

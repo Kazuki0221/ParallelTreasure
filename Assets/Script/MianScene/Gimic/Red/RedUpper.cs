@@ -68,4 +68,16 @@ public class RedUpper : RedController
             }
         }
     }
+
+    public override void OnTriggerStay2D(Collider2D collision)
+    {
+        base.OnTriggerStay2D(collision);
+
+        //–Ø‚ð”R‚â‚·
+        if (collision.gameObject.CompareTag("Wood"))
+        {
+            Debug.Log(collision.gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
 }
