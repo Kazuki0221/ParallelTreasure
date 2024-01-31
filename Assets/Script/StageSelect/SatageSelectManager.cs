@@ -13,18 +13,20 @@ public class SatageSelectManager : MonoBehaviour
     [SerializeField] List<Button> _stageList = new List<Button>();  //ステージ遷移ボタンのリスト
 
     //オプション関連
-    [SerializeField] GameObject _optionWindow;
+    [SerializeField, Header("オプションウィンドウ")] GameObject _optionWindow;
     [SerializeField] Button _optionButton;
+    [SerializeField] Button[] _buttons = new Button[2];
+
 
     //データウィンドウ関連
-    [SerializeField] GameObject _dataWindow;
-    [SerializeField] Button[] _buttons = new Button[2];
+    [SerializeField,Header("データウィンドウ")] GameObject _dataWindow;
+    //ウィンドウを閉じるボタン格納用リスト
+    [SerializeField] Button _closeDataWindowButton;
+
 
     //宝物リスト関連
     [SerializeField] GameObject treasureList;
 
-    //ウィンドウを閉じるボタン格納用リスト
-    [SerializeField, Header("データウィンドウを閉じるボタン")] Button _closeDataWindowButton;
 
     //TreasreListを閉じるボタン格納用リスト
     [SerializeField, Header("TreasreListを閉じるボタン")] Button _closeTreasreListButton;
