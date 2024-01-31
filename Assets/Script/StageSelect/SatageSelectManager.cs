@@ -31,6 +31,7 @@ public class SatageSelectManager : MonoBehaviour
 
     [SerializeField] Button _backButton;
 
+    [SerializeField] FadeController _fadeController = null;
 
 
     void Start()
@@ -52,8 +53,7 @@ public class SatageSelectManager : MonoBehaviour
         GameManager.instance.saveFlg = false;
         GameManager.instance.loadFlg = false;
 
-        var fadeController = FindObjectOfType<FadeController>();
-        StartCoroutine(fadeController.FadeOut(fadeController.FadeSpeed));
+        _fadeController.FadeOut();
         AudioManager.instance.PlayBGM("Main");
     }
 

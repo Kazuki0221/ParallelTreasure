@@ -23,10 +23,10 @@ public class GameContoroller : MonoBehaviour
     int durabilitiesIndex;
     [SerializeField, Header("耐久度の状態")] Sprite[] durabilitiesStates = new Sprite[3]; // 0: Full, 1:Half, 2:empty
     [SerializeField] TextMeshProUGUI treasureCountText;
-    BackgroundView background = null;
+    [SerializeField]BackgroundView background = null;
 
     //オブジェクト関連
-    PlayerController player = null;
+    [SerializeField]PlayerController player = null;
     List<ColorController> colorControllers = null;
     
     List<GroundColorChange> grounds = null;
@@ -37,7 +37,7 @@ public class GameContoroller : MonoBehaviour
     [SerializeField] GameObject _clearAnim = null;
     [SerializeField] GameObject _result = null;
 
-    protected FadeController _fadeController = null;
+    [SerializeField] protected FadeController _fadeController = null;
 
     /// <summary>
     /// 色の変更の可否を判定する変数
@@ -56,16 +56,13 @@ public class GameContoroller : MonoBehaviour
 
     public virtual void Start()
     {
-        _fadeController = FindObjectOfType<FadeController>();
         StartCoroutine(FadeOut());
         AudioManager.instance.PlayBGM("Main");
 
-        player = FindObjectOfType<PlayerController>();
         //色特有のオブジェクトのみを格納する(床と背景以外を適用)
         colorControllers = FindObjectsOfType<ColorController>().Where(c => !c.GetComponent<GroundColorChange>() && !c.CompareTag("Background") && !c.GetComponent<YellowDoor>()).ToList();
         colorControllers.Where(c => c.CState != ColorState.Normal).ToList().ForEach(c => c.gameObject.SetActive(false));
 
-        background = FindObjectOfType<BackgroundView>();
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
         doors = FindObjectsOfType<YellowDoor>().ToList();
 
@@ -128,8 +125,8 @@ public class GameContoroller : MonoBehaviour
         }
 
         background.ChangeColor(colorState);
-        grounds.ForEach(g => g.ChangeColor(colorState));
-        doors.ForEach(l => l.CState = colorState);
+        grounds.ForEach(ground => ground.ChangeColor(colorState));
+        doors.ForEach(door => door.CState = colorState);
         IsChangeColor = false;
         colorSelectButton.SetActive(false);
     }
@@ -208,9 +205,7 @@ public class GameContoroller : MonoBehaviour
     /// <returns></returns>
     public virtual IEnumerator FadeOut()
     {
-        var fadeController = FindObjectOfType<FadeController>();
-
-        yield return fadeController.FadeOut(fadeController.FadeSpeed);
+        yield return _fadeController.FadeOut(_fadeController.FadeSpeed);
         _isPlay = true;
         yield return null;
     }

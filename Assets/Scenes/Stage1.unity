@@ -493,6 +493,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 869552667158259138, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
   m_PrefabInstance: {fileID: 75350425}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &75350427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3295447675310869456, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
+  m_PrefabInstance: {fileID: 75350425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b50333d0ec9ee74da174a81f3991e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &80191558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3956,8 +3967,11 @@ MonoBehaviour:
   - {fileID: 2048069288, guid: 7e545c222f527a64090d3e8c860c7f1e, type: 3}
   - {fileID: -1477425119, guid: 7e545c222f527a64090d3e8c860c7f1e, type: 3}
   treasureCountText: {fileID: 290869298}
+  background: {fileID: 1577943781}
+  player: {fileID: 75350427}
   _clearAnim: {fileID: 752254005}
   _result: {fileID: 290869297}
+  _fadeController: {fileID: 1815698903}
 --- !u!1 &752254005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4742948342657246361, guid: 286960d8763baa94d85cc412e35cf796, type: 3}
@@ -8574,6 +8588,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7565562602698316815, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
   m_PrefabInstance: {fileID: 1815698901}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1815698903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 343172883058276180, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
+  m_PrefabInstance: {fileID: 1815698901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0819e3be07bd2c149a4f55c9a75548ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1862874058
 PrefabInstance:
   m_ObjectHideFlags: 0

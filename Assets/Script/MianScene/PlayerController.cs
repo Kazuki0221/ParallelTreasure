@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
     Vector2 tempVelocity = Vector2.zero;
 
     Animator _animator => GetComponent<Animator>();
-    AnimationClip _tempAnim  = null;
     SpriteRenderer _sr => GetComponent<SpriteRenderer>();
 
     GameContoroller _gameContoroller = null;
@@ -62,6 +61,7 @@ public class PlayerController : MonoBehaviour
         {
             _rb2D.velocity = Vector2.zero;
             _animator.speed = 0;
+            return;
         }
 
 

@@ -411,6 +411,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &95482009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 343172883058276180, guid: c3b7f25ca3ac22a468ed2c9da8c61e91, type: 3}
+  m_PrefabInstance: {fileID: 95482006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0819e3be07bd2c149a4f55c9a75548ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128440263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +3646,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 869552667158259138, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
   m_PrefabInstance: {fileID: 1476372838}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476372840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3295447675310869456, guid: a3d057e4f96e9284789ced14e10fb876, type: 3}
+  m_PrefabInstance: {fileID: 1476372838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b50333d0ec9ee74da174a81f3991e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1481699756
 GameObject:
   m_ObjectHideFlags: 0
@@ -4642,8 +4664,11 @@ MonoBehaviour:
   - {fileID: 2048069288, guid: 7e545c222f527a64090d3e8c860c7f1e, type: 3}
   - {fileID: -1477425119, guid: 7e545c222f527a64090d3e8c860c7f1e, type: 3}
   treasureCountText: {fileID: 311546483}
+  background: {fileID: 783058611}
+  player: {fileID: 1476372840}
   _clearAnim: {fileID: 77443029}
   _result: {fileID: 177789989}
+  _fadeController: {fileID: 95482009}
   stageUI: {fileID: 414397874}
   _camera: {fileID: 1007558705}
   _tutorialAnim: {fileID: 1361793864}
