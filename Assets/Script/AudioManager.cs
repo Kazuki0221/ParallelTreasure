@@ -4,7 +4,6 @@ using UnityEngine;
 
 /// <summary>
 /// 音声データを管理するクラス
-/// ※コピペにつき後々変更を加える
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
@@ -98,17 +97,6 @@ public class AudioManager : MonoBehaviour
         }
 
         _nextSEName= seName;
-    }
-
-    void DelayPlaySE()
-    {
-        foreach (AudioSource seSouce in _seSourceList)
-        {
-            if (!seSouce.isPlaying) {
-                seSouce.PlayOneShot(_seDic[_nextSEName] as AudioClip);
-                return;
-            }
-        }
     }
 
     public void PlayBGM(string bgmName, float fadeSpeedRate = _bgmFadeSpeedRateHigh)
