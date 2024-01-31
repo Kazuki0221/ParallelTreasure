@@ -103,16 +103,14 @@ public class PlayerController : MonoBehaviour
             _gameContoroller._isGameOver = true;
             _gameContoroller.Judgement();
         }
-    }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
         //’n–Ê‚ÉÚG‚Ìˆ—
         if (collision.gameObject.CompareTag("Ground"))
         {
             _isJump = true;
         }
     }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
