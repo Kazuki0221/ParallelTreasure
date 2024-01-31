@@ -89,7 +89,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySE(string seName, float delay = 0.0f)
+    public void PlaySE(string seName)
     {
         if (!_seDic.ContainsKey(seName))
         {
@@ -138,7 +138,6 @@ public class AudioManager : MonoBehaviour
         _bgmFadeSpeedRate = fadeSpeedRate;
         _isFadeOut = true;
     }
-
 
     void Update()
     {

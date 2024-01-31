@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
                 _rb2D.velocity = Vector2.zero;
                 _animator.speed = 0;
 
-                if (_gameContoroller.ChackKey())
+                if (_gameContoroller.CheckKey())
                 {
                     ColorState cState = ColorState.Normal;
                     if (Input.GetKey(KeyCode.Alpha1))

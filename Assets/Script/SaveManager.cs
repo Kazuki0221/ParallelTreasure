@@ -110,6 +110,11 @@ public class SaveManager : MonoBehaviour
         return filePath;
     }
 
+    /// <summary>
+    /// セーブデータが存在しているかを判別する関数
+    /// </summary>
+    /// <param name="saveDataNum"></param>
+    /// <returns></returns>
     public bool ExistData(int saveDataNum)
     {
         string filePath = GetDataPath(saveDataNum);

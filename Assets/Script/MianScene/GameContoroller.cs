@@ -27,7 +27,7 @@ public class GameContoroller : MonoBehaviour
 
     //オブジェクト関連
     PlayerController player = null;
-    List<ColorController> colorController = null;
+    List<ColorController> colorControllers = null;
     
     List<GroundColorChange> grounds = null;
     List<YellowDoor> doors = null;
@@ -62,8 +62,8 @@ public class GameContoroller : MonoBehaviour
 
         player = FindObjectOfType<PlayerController>();
         //色特有のオブジェクトのみを格納する(床と背景以外を適用)
-        colorController = FindObjectsOfType<ColorController>().Where(c => !c.GetComponent<GroundColorChange>() && !c.CompareTag("Background") && !c.GetComponent<YellowDoor>()).ToList();
-        colorController.Where(c => c.CState != ColorState.Normal).ToList().ForEach(c => c.gameObject.SetActive(false));
+        colorControllers = FindObjectsOfType<ColorController>().Where(c => !c.GetComponent<GroundColorChange>() && !c.CompareTag("Background") && !c.GetComponent<YellowDoor>()).ToList();
+        colorControllers.Where(c => c.CState != ColorState.Normal).ToList().ForEach(c => c.gameObject.SetActive(false));
 
         background = FindObjectOfType<BackgroundView>();
         grounds = FindObjectsOfType<GroundColorChange>().ToList();
@@ -115,59 +115,18 @@ public class GameContoroller : MonoBehaviour
     /// <param name="colorState"></param>
     public void ChangeStageColor(ColorState colorState)
     {
-        switch (colorState)
+        foreach(ColorController colorController in colorControllers)
         {
-            case ColorState.Red:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Red).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-
-                    var list2 = colorController.Where(c => c.CState != ColorState.Red).ToList();
-                    list2.ForEach(l => l.gameObject.SetActive(false));
-                }
-                break;
-
-            case ColorState.Blue:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Blue).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-
-                    var list2 = colorController.Where(c => c.CState != ColorState.Blue).ToList();
-                    list2.ForEach(l => l.gameObject.SetActive(false));
-                }
-
-                break;
-
-            case ColorState.Yellow:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Yellow).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-
-                    var list2 = colorController.Where(c => c.CState != ColorState.Yellow).ToList();
-                    list2.ForEach(l => l.gameObject.SetActive(false));
-                }
-                break;
-
-            case ColorState.Green:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Green).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-
-                    var list2 = colorController.Where(c => c.CState != ColorState.Green).ToList();
-                    list2.ForEach(l => l.gameObject.SetActive(false));
-                }
-                break;
-            case ColorState.Normal:
-                {
-                    var list = colorController.Where(c => c.CState == ColorState.Normal).ToList();
-                    list.ForEach(l => l.gameObject.SetActive(true));
-
-                    var list2 = colorController.Where(c => c.CState != ColorState.Normal).ToList();
-                    list2.ForEach(l => l.gameObject.SetActive(false));
-                }
-                break;
-            default: return;
+            if(colorController.CState == colorState)
+            {
+                colorController.gameObject.SetActive(true);
+            }
+            else if(colorController.CState != colorState)
+            {
+                colorController.gameObject.SetActive(false);
+            }
         }
+
         background.ChangeColor(colorState);
         grounds.ForEach(g => g.ChangeColor(colorState));
         doors.ForEach(l => l.CState = colorState);
@@ -181,7 +140,6 @@ public class GameContoroller : MonoBehaviour
     public void OnDamage()
     {
         if (durabilitiesIndex <= 0) return;
-        //Debug.Log((float)durabilitiesIndex);
         //減少量の状態によって、対応する画像に変更する。
         if ((float)durabilitiesIndex == player.Durability)
         {
@@ -222,7 +180,7 @@ public class GameContoroller : MonoBehaviour
     /// 押されたキーの判別処理
     /// </summary>
     /// <returns></returns>
-    public bool ChackKey()
+    public bool CheckKey()
     {
         if (Input.anyKey)
         {

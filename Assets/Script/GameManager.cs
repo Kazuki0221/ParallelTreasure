@@ -54,10 +54,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ウィンドウを閉じる処理
-    /// </summary>
-
-    /// <summary>
     /// アプリを閉じる処理
     /// </summary>
     public void EndGame()
