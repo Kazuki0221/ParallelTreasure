@@ -3154,6 +3154,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 628447104}
     m_Modifications:
+    - target: {fileID: -2463006088897274617, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
+      propertyPath: treasure
+      value: 
+      objectReference: {fileID: 11400000, guid: 813c1c9ba05ac9448be386e4890435c7, type: 2}
     - target: {fileID: 285692473646232281, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
       propertyPath: m_Name
       value: Treasure (2)
@@ -4590,6 +4594,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 628447104}
     m_Modifications:
+    - target: {fileID: -2463006088897274617, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
+      propertyPath: treasure
+      value: 
+      objectReference: {fileID: 11400000, guid: 7df3a12028ebd4e468ee41e016589b93, type: 2}
+    - target: {fileID: -2463006088897274617, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
+      propertyPath: treasureType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 285692473646232281, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
       propertyPath: m_Name
       value: Treasure (1)
@@ -6099,6 +6111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 628447104}
     m_Modifications:
+    - target: {fileID: -2463006088897274617, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
+      propertyPath: treasure
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bd1533ab4062724987cb9b879e8d519, type: 2}
     - target: {fileID: 285692473646232281, guid: 7b9ee1afcaef5f74eaa6d14211c72391, type: 3}
       propertyPath: m_Name
       value: Treasure (3)
