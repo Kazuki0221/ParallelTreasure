@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             _gameContoroller._isPlay = false;
             _gameContoroller._isGameOver = true;
+            _gameContoroller.Judgement();
         }
 
         Move();

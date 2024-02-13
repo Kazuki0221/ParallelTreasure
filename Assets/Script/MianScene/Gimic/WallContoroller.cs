@@ -10,6 +10,14 @@ public class WallContoroller : MonoBehaviour
     [SerializeField, Header("ˆÚ“®‘¬“x")] float _speed = 3.0f;
     Rigidbody2D _rb2D = default;
     GameContoroller _gameContoroller = null;
+    Vector2 moveDirction = Vector2.zero;
+
+    public enum WallType
+    {
+        RightToLeft,
+        BottomToTop
+    }
+    public WallType type = WallType.RightToLeft;
 
     void Start()
     {
@@ -23,7 +31,14 @@ public class WallContoroller : MonoBehaviour
         {
             if (!_gameContoroller.IsChangeColor)
             {
-                var moveDirction = Vector2.right * _speed;
+                if (type == WallType.RightToLeft)
+                {
+                    moveDirction = Vector2.right * _speed;
+                }
+                else if(type == WallType.BottomToTop)
+                {
+                    moveDirction = Vector2.up * _speed;
+                }
                 _rb2D.velocity = moveDirction;
             }
             else

@@ -136,12 +136,13 @@ public class GameContoroller : MonoBehaviour
     /// </summary>
     public void OnDamage()
     {
-        if (durabilitiesIndex <= 0) return;
+        if (durabilitiesIndex < 0) return;
         //Œ¸­—Ê‚Ìó‘Ô‚É‚æ‚Á‚ÄA‘Î‰ž‚·‚é‰æ‘œ‚É•ÏX‚·‚éB
         if ((float)durabilitiesIndex == player.Durability)
         {
             durabilities[durabilitiesIndex].sprite = durabilitiesStates[2];
             durabilitiesIndex--;
+            Debug.Log($"Index:{durabilitiesIndex}");
         }
         else if ((float)durabilitiesIndex < player.Durability)
         {
