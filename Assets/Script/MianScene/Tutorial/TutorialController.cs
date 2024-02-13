@@ -16,11 +16,18 @@ public class TutorialController : GameContoroller
     [SerializeField] CinemachineVirtualCameraBase _camera;  //ïœçXå„ÇÃÉJÉÅÉâ
 
     [SerializeField] GameObject _tutorialAnim = default;
+
+    public static bool isSkip = false;
     
     public override void Start()
     {
         base.Start();
         stageUI.SetActive(false);
+
+        if(isSkip == true)
+        {
+            ChangeCamera();
+        }
     }
 
     /// <summary>
@@ -38,6 +45,10 @@ public class TutorialController : GameContoroller
     public void StartGame()
     {
         _isPlay = true;
+        if(isSkip == false)
+        {
+            isSkip = true;
+        }
     }
 
     /// <summary>
@@ -48,7 +59,14 @@ public class TutorialController : GameContoroller
     {
         yield return _fadeController.FadeOut(_fadeController.FadeSpeed);
 
-        _tutorialAnim.GetComponent<PlayableDirector>().Play();
+        if (isSkip == true)
+        {
+            StartGame();
+        }
+        else if(isSkip == false)
+        {
+            _tutorialAnim.GetComponent<PlayableDirector>().Play();
+        }
 
         yield return null;
     }
