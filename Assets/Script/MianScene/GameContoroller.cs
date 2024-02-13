@@ -142,7 +142,6 @@ public class GameContoroller : MonoBehaviour
         {
             durabilities[durabilitiesIndex].sprite = durabilitiesStates[2];
             durabilitiesIndex--;
-            Debug.Log($"Index:{durabilitiesIndex}");
         }
         else if ((float)durabilitiesIndex < player.Durability)
         {
@@ -162,7 +161,7 @@ public class GameContoroller : MonoBehaviour
             image.SetActive(true);
         }
         _treasures.Add(treasure.GetComponent<TreasureController>().Treaure);
-        treasureCountText.text = $"~{_treasures.Count}";
+        treasureCountText.text = $"~ {_treasures.Count}";
     }
 
     /// <summary>
